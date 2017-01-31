@@ -1,0 +1,141 @@
+<!-- Config Div   -->
+<div id="config-div" class="settingsText" style="display:none">
+    <form role="form" id="mainForm">  
+        <h1 align="center">If a Mystic Clover Attempt Fails</h1>
+
+        <h2>Players have a chance to receive other items instead of the Mystic Clover.<small>These are for the single recipe. For the ten at a time recipe, you will receive ten times as much.</small></h2>
+        <br />
+        <!-- Materials Start below -->
+        <div style="width: 100%; float: left; clear: both;">        
+            <div class="desktopLeft">
+                <h3>2-4 T-6 Fine Crafting Mats: </h3>                         
+                <label>Ancient Bone: </label> <span data-name="Ancient Bone" class="gw2-tpprice" data-id="24358">…</span><br />
+                <label>Vicious Claw: </label><span data-name="Vicious Claw" class="gw2-tpprice" data-id="24351">…</span><br />
+                <label>Pile of Crystalline Dust: </label><span data-name="Pile of Crystalline Dust" class="gw2-tpprice" data-id="24277">…</span><br />
+                <label>Vicious Fang: </label><span data-name="Vicious Fang" class="gw2-tpprice" data-id="24357">…</span><br />
+                <label>Armored Scale: </label><span data-name="Armored Scale" class="gw2-tpprice" data-id="24289">…</span><br />
+                <label>Elaborate Totem: </label><span data-name="Elaborate Totem" class="gw2-tpprice" data-id="24300">…</span><br />
+                <label>Powerful Venom Sac: </label><span data-name="Powerful Venom Sac" class="gw2-tpprice" data-id="24283">…</span><br />
+                <label>Vial of Powerful Blood:</label><span data-name="Vial of Powerful Blood" class="gw2-tpprice" data-id="24295">…</span><br />
+            </div>
+            <div class="desktopRight">
+                <h3>1 T-5 Rare Crafting Mats: </h3>
+                <label>Pile of Putrid Essence: </label> <span data-name="Pile of Putrid Essence" class="gw2-tpprice" data-id="24335">…</span><br />
+                <label>Onyx Lodestone: </label><span data-name="Onyx Lodestone" class="gw2-tpprice" data-id="24310">…</span><br />
+                <label>Molten Lodestone: </label><span data-name="Molten Lodestone" class="gw2-tpprice" data-id="24315">…</span><br />
+                <label>Glacial Lodestone: </label><span data-name="Glacial Lodestone" class="gw2-tpprice" data-id="24320">…</span><br />
+                <label>Destroyer Lodestone: </label><span data-name="Destroyer Lodestone" class="gw2-tpprice" data-id="24325">…</span><br />
+                <label>Crystal Lodestone: </label><span data-name="Crystal Lodestone" class="gw2-tpprice" data-id="24330">…</span><br />
+                <label>Corrupted Lodestone: </label><span data-name="Corrupted Lodestone" class="gw2-tpprice" data-id="24340">…</span><br />
+                <label>Charged Lodestone:</label><span data-name="Charged Lodestone" class="gw2-tpprice" data-id="24305">…</span><br />
+            </div>
+        </div>
+
+        <div style="width: 100%; float: left; clear: both;">        
+            <div class="desktopLeft">
+                <h3>1-3 T-6 Refined Mats:</h3>
+                <label>Orichalcum Ingot: </label> <span data-name="Orichalcum Ingot" class="gw2-tpprice" data-id="19685">…</span><br />
+                <label>Ancient Wood Plank: </label> <span data-name="Ancient Wood Plank" class="gw2-tpprice" data-id="19712">…</span><br />
+                <label>Bolt of Gossamer: </label> <span data-name="Bolt of Gossamer" class="gw2-tpprice" data-id="19746">…</span><br />
+                <label>Cured Hardened Leather Square: </label> <span data-name="Cured Hardened Leather Square" class="gw2-tpprice" data-id="19737">…</span><br />
+                <h3>2 Obsidian Shards: </h3>                                        
+                <label>Obsidian Shard:</label><span data-name="Obsidian Shard" class="gw2-tpprice" data-id="19925">No Resale Value</span>
+                <h3>1 Hidden Treasure: </h3>                                        
+                <label>Hidden Treasure:</label><span data-name="Hidden Treasure" class="gw2-tpprice" data-id="9267">…</span>                                                          
+            </div>
+            <div class="desktopRight">
+                <h3>2 Globs of Ectoplasm: </h3>
+                <label>Glob of Ectoplasm:</label><span data-name="Glob of Ectoplasm" class="gw2-tpprice" data-id="19721">…</span>
+                <h3>5 Mystic Coins: </h3>                                        
+                <label>Mystic Coin:</label><span data-name="Mystic Coin" class="gw2-tpprice" data-id="19976">…</span>
+                <h3>2 Crystals: </h3>                                      
+                <label>Crystal:</label><span data-name="Crystal" class="gw2-tpprice" data-id="20799">No Resale Value</span>                                   
+            </div>
+        </div>   
+        <br />
+        <button type=button class="btn btn-success btn-block" id="proceed-to-sim-button">Proceed to Sim</button>           
+    </form>
+    <br />
+</div>
+
+<!--  Sim Div  -->
+<div id="sim-div" style="display:none">
+    <h1  class= "settingsText" align="center">Sim</h1>
+    <article class="col-2-no-rule settingsText">
+        <div class="desktopLeft">
+            <h2 >Cost for 1 Clover</h2>                                   
+            <label>1 Mystic Coin:</label><span id = "19976" data-name="Mystic Coin" class="gw2-tpprice" data-id="19976">…</span><br />
+            <label>1 Glob of Ectoplasm:</label><span id = "19721" data-name="Glob of Ectoplasm" class="gw2-tpprice" data-id="19721">…</span><br />
+            <label>1 Obsidian Shard:</label><span data-name="Obsidian Shard" class="gw2-tpprice" data-id="19925">2,100 Karma</span><br />
+            <label>6 Philosopher's Stones:</label><span data-name="Philosopher's Stone" class="gw2-tpprice" data-id="20796">10 per Skill Point </span><br />
+        </div>
+        <div class="desktopRight">
+            <h2 >Cost for 10 Clovers</h2>                                        
+            <label>10 Mystic Coins:</label><span  id = "19976-1" data-name="Mystic Coin" class="gw2-tpprice" data-id="19976" data-quantity="10">…</span><br />
+            <label>10 Globs of Ectoplasm:</label><span id = "19721-2" data-name="Glob of Ectoplasm" class="gw2-tpprice" data-id="19721" data-quantity="10">…</span><br />
+            <label>10 Obsidian Shards:</label><span data-name="Obsidian Shard" class="gw2-tpprice" data-id="19925">21,00 Karma</span><br />
+            <label>10 Crystals:</label><span data-name="Crystal" class="gw2-tpprice" data-id="20799">3 per Skill Point</span>
+        </div>
+    </article>
+    <div>        
+        <h2 class="settingsText">Parameters</h2>
+        <label for="selectSims" class="settingsText">Simulations: </label>
+        <select id="selectSims">
+            <option>1</option>
+            <option>5</option>
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+        <label for="selectCloverNum" class="settingsText">Clover Recipe:</label>
+        <select id="selectCloverNum">
+            <option>1</option>
+            <option>10</option>
+        </select>
+        <label for="selectGraph" class="settingsText">Graph Type: </label>
+        <select id="graph-choice">
+            <option>3D Pie</option>
+        </select>                    
+        <button type=button class="btn btn-success btn-block" id="submitButton">Go!</button>
+    </div>      
+    <div class="settingsText">
+        <h2 class="">Results</h2>
+        <div class="desktopLeft">
+            <label for=expenses >Expenses:</label><span id=expenses></span><br />
+            <label for=earnings>Earnings:</label><span id=earnings></span>
+        </div>
+        <div class="desktopRight">
+            <label for=numClovers >Mystic Clovers:</label><span id=numClovers></span><br />
+            <label for=result id="result-label">Gold Earned/Lost:</label><span id=result></span>
+        </div>                    
+    </div>
+    <br />
+    <div id="container" style="min-width: 200px; height: 400px; margin: 0 auto"></div> 
+    <br />
+</div>                  
+<!--  Sim Information Div  -->
+<div id="sim-info-div"  class="container settingsText" style="display:none;">
+    <h1 align="center">About this Sim</h1>
+    <h2 class="">What is a Mystic Clover?</h2>
+    Mystic Clovers are used to create legendary weapons. They are generated in the Mystic Forge using one of two recipes and are rewarded in various PvP Reward Tracks. 
+    They are also dropped from the Chest of Legendary Crafting Materials. For more information, refer to the <a href='https://wiki.guildwars2.com/wiki/Mystic_Clover' target="_blank">Wiki</a>.    
+    <h2 class="">Purpose of this Sim</h2>
+    This sim aims to emulate the in-game activity of generating Mystic clovers using one of two recipes (1 or 10 Mystic Clovers at a time). 
+    By running this application, the player can get insight on how Mystic Clovers are generated and what happens when a Mystic Clover attempt fails. 
+    Data regarding material prices is retrieved and updated dynamically from the official GW2 api. 
+    <h2 class="">Can you turn this process into Gold??</h2>
+    Short Answer: Potentially. Long answer, refer to  <a href='http://en.wikipedia.org/wiki/Law_of_large_numbers' target="_blank">Law of Large Numbers</a>. 
+    I have personally attempted this process to make gold when the process fails to generate Mystic Clovers and instead generates materials, which can be sold in the Tradepost. 
+    Unfortunately, it does not seem like a viable approach as the profits are usually not enough, especially after considering the Tradepost selling fees.
+    <h2 class="">Why should i trust this Sim?</h2>
+    Generally speaking, you don't have to. If you are here, chances are that you are a person who likes to personally find out whether numbers add up or not. 
+    You are more than welcome to check out the code, report bugs and contribute in development.
+    <h2 class="">What else?</h2>
+    I got the drop rates for all materials that can be generated for this sim from <a href="https://wiki.guildwars2.com/wiki/Mystic_Clover/Drop_rate">Wikipedia</a>. 
+    For the sake of simplicity, some numbers/percentages have been normalized and or rounded up. If you have data for this sim, don't hesitate to share!
+</div>         
+<!-- Sim specific js here -->
+<script src="js/mystic_clover.js"></script>
+<script src="js/gw2PriceApiCall.js"></script>
+<!-- Custom graphs here -->
+<script src="graphs/pie.js"></script>

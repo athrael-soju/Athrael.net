@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!--
+    Copyright  (c) 2016 Athrael
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+-->
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>The Forge - A Black Desert Online Enchantment Simulator</title>
+
+        <!-- Sweetalert CSS -->
+        <link rel="stylesheet" href="Addons/sweetalert/sweetalert.css">        
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link href="css/half-slider.css" rel="stylesheet">
+
+        <!-- In <head> -->
+        <link href="Addons/noUiSlider.8.5.1/nouislider.min.css" rel="stylesheet">        
+
+        <!-- Custom CSS -->
+        <link href="css/custom.css" rel="stylesheet">                        
+
+        <!-- JQuery UI -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" id="main-nav" href="#main">The Forge</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a id="config-nav" href="#config">Configuration</a>
+                        </li>                        
+                        <li>
+                            <a id="enchant-nav" href="#enchantment" style="display:none">Enchantment</a>
+                        </li>
+                        <li>
+                            <a id="anl-nav" href="#analysis" style="display:none">Analysis</a>
+                        </li>                  
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Half Page Image Background Carousel Header 
+        <header id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for Slides 
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="fill" style="background-image:url('img/blackpic_grandopen05.jpg');"></div>
+                    <div class="carousel-caption">
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url('img/blackpic_grandopen16.jpg');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url('img/blackpic_grandopen09.jpg');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <!-- Controls
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+        </header>
+
+        <!-- Page Content -->
+        <div class="container">
+            <br /><br /><br />
+            <div class="row" id="main-div">
+                <div class="col-lg-12">
+                    <h1 align="center">Black Desert online: The Forge</h1>
+                    <div class="alert alert-info" role="alert">                                   
+                        <h3>Welcome to The Forge:
+                            <small>
+                                A weapon/armor (and soon an accessory) enchantment simulator which calculates enchant costs in silver, based on
+                                user defined parameters. 
+                                <br /><br />
+                                Take a look below for an estimate on Armor and Weapon enchant success percentages. Please keep in mind that this information was 
+                                deduced by the community by trial and error and by no means should be taken literally, when enchanting your equipment. 
+                            </small>
+                        </h3>
+                    </div>
+                    <hr>
+                    <h3 align="center">Enchantment Table</h3>
+
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Armor</a></li>
+                            <li><a href="#tabs-2">Weapon</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                            <table id="armorEnchantTable" class="display" cellspacing="0" width="100%" align="center">
+                            </table>  
+                        </div>
+                        <div id="tabs-2">
+                            <table id="weaponEnchantTable" class="display" cellspacing="0" width="100%" align="center">
+                            </table>  
+                        </div>
+                    </div>
+                    <hr>                    
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn bdoButton" id="proceed-to-config-button">Configuration <span class="glyphicon glyphicon-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Config Div -->
+            <div id="config-div" style="display:none">
+                <div class="alert alert-info" role="alert" align="center">
+                    <h3>Configuration: 
+                        <small>
+                            Here is where you will provide your parameters for customizing how the simulation will run.  
+                        </small>
+                    </h3>
+                </div>
+                <h3 align="center">Gear Rarity</h3>
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    <label class="btn bdoButton active" id="greenRarityLabel" style="color: green">
+                        <input type="radio" name="rarityType" value="Green" checked>Green
+                    </label>
+                    <label class="btn bdoButton" id="blueRarityLabel" style="color: #3366ff">
+                        <input type="radio" name="rarityType" value="Blue" >Blue
+                    </label>
+                    <label class="btn bdoButton" id="yellowRarityLabel" style="color: #ffcc00">
+                        <input type="radio" name="rarityType" value="Yellow" >Yellow
+                    </label>                    
+                </div>
+                <div id="acquired-by-div" style="display:none">
+                    <h3 align="center">Acquisition</h3>
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                        <label class="btn bdoButton active" id="acqByUpgrade">
+                            <input type="radio" name="acquiredBy" value="acqByUpgrade"  checked>Rarity Upgrade
+                        </label>
+                        <label class="btn bdoButton" >
+                            <input type="radio" name="acquiredBy" value="acqByDropOrMarket" id="acqByDropOrMarket">Drop or Market
+                        </label>     
+                    </div>
+                </div>
+                <h3 align="center">Gear Type</h3>
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    <label class="btn bdoButton active" id="armorRadioLabel">
+                        <input type="radio" name="enchantType" value="Armor"  checked>Armor
+                    </label>
+                    <label class="btn bdoButton" id="weaponRadioLabel">
+                        <input type="radio" name="enchantType" value="Weapon" >Weapon
+                    </label>
+                </div>
+                <h3 align="center">Preferred Enchant Method</h3>
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    <label class="btn bdoButton active" id="rngRadioLabel">
+                        <input type="radio" name="enchantMethod" value="RNG"  checked>RNG
+                    </label>
+                    <label class="btn bdoButton" id="forcedRadioLabel">
+                        <input type="radio" name="enchantMethod" value="Forced" >Forced
+                    </label>
+                </div>                                
+
+                <h3 align="center">Cost Breakdown <small>(Between 50K-1000K Silver)</small></h3>
+                <div class="form-group input-group" id="equipment-input-div">
+                    <span style="width: 200px;" class="input-group-addon">Equipment </span> 
+                    <input type="number" required class="form-control" value=250 min=50 max=1000 step=50 id="itemMarketValue"> 
+                    <span class="input-group-addon">K</span>                    
+                </div>
+                <div class="form-group input-group" id="fragment-input-div" style="display:none">
+                    <span style="width: 200px;" class="input-group-addon">Memory Fragment</span> 
+                    <input type="number" required class="form-control" value=550 min=50 max=1000 step=50 id="fragmentMarketValue"> 
+                    <span class="input-group-addon">K</span>                                 
+                </div>
+                <div class="form-group input-group">
+                    <span style="width: 200px;" class="input-group-addon">Black Stone</span> 
+                    <input type="number" required class="form-control" value=200 min=50 max=1000 step=50 id="blackStoneMarketValue"> 
+                    <span class="input-group-addon">K</span>
+                </div>                
+
+                <h3 align="center">Enchant Range</h3>
+                <div id="connect">
+                </div>
+                <div align="center" >
+                    <h4><span id="slider-limit-value-min" class="label label-primary"  style="float:left">From</span></h4>
+                    <h4><span id="slider-limit-value-max" class="label label-primary"  style="float:right">To</span></h4>
+                </div>               
+                <br /><hr> 
+                <div class="btn-group btn-group-justified">
+                    <a class="btn bdoButton" id="back-to-main-button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Main</a>
+                    <a class="btn bdoButton" id="proceed-to-enchant-button">Enchantment <span class="glyphicon glyphicon-arrow-right"></span></a> 
+                </div>
+            </div>            
+
+            <!-- Enchant Div -->
+            <div id="enchant-div" style="display:none">
+                <div class="alert alert-info" role="alert">
+                    <h3>Enchantment:
+                        <small>
+                            Here you can observe the results of a single enchantment run based on the selected parameters from the configuration page. Clicking Enchant, will re-run the simulation once, 
+                            giving you another idea of what you could expect from a single run. Select between Configuration/Graph to view your results.
+                        </small>
+                    </h3>
+                </div>
+
+                <hr>
+                <div id="enchant-content2" style="display:none">
+                    <div id="resultTabs">
+                        <ul>
+                            <li><a href="#tab-config">Configuration</a></li>
+                            <li><a href="#tab-graph">Graph</a></li>
+                        </ul>
+                        <div id="tab-config" >
+                            <h3>Selection</h3>
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Type</span> 
+                                <input  disabled required class="form-control" id="itemType"> 
+                                <span class="input-group-addon"></span>
+                            </div>
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Range</span> 
+                                <input disabled required class="form-control" id="range"> 
+                                <span class="input-group-addon"></span>
+                            </div>                            
+                            <h3>Usage</h3>                            
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Black Stones</span> 
+                                <input type="number" disabled required class="form-control" id="blackStonesUsed"> 
+                                <span class="input-group-addon">BS</span>
+                            </div>
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Durability </span> 
+                                <input type="number" disabled required class="form-control" id="durabilityLost"> 
+                                <span class="input-group-addon">DUR</span>
+                            </div>                    
+                            <h3>Cost Breakdown <small>(In M Silver)</small></h3>
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Black Stones</span> 
+                                <input type="number" disabled required class="form-control" id="costOfblackStones"> 
+                                <span class="input-group-addon">M</span>
+                            </div>                    
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Weapon Repairs</span> 
+                                <input type="number" disabled required class="form-control" id="costOfWeaponRepairs"> 
+                                <span class="input-group-addon">M</span>
+                            </div>
+                            <hr>
+                            <div class="form-group input-group">
+                                <span style="width: 150px;" class="input-group-addon">Total</span> 
+                                <input type="number" disabled required class="form-control" id="totalCost"> 
+                                <span class="input-group-addon">M</span>
+                            </div>                      
+                        </div>
+                        <div id="tab-graph">
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <br />
+                <div class="btn-group btn-group-justified">
+                    <a class="btn bdoButton" id="refine-button"><span class="glyphicon glyphicon-arrow-left"></span> Configure</a>
+                    <a class="btn bdoButton" id="enchant-button">Enchant <span class="glyphicon glyphicon-retweet"></span></a>  
+                    <a class="btn bdoButton" id="proceed-to-anl-button">Analysis <span class="glyphicon glyphicon-arrow-right"></span></a>
+                </div>
+            </div>
+
+            <!-- Analysis Div -->
+            <div id="anl-div" style="display:none">
+                <div class="alert alert-info" role="alert">
+                    <h3>Analysis: 
+                        <small>
+                            Here you can run the simulation up to 100 times. The reason  you'd want to do that is to get an idea of the underlying distribution or curve, if
+                            any. You can also see the luckiest/unluckiest enchant that results from every set of simulations, which can help you define whether your risk/success
+                            rate is worthwhile.                
+                        </small>
+                    </h3>
+                </div>
+                <hr>
+                <div class="form-group input-group">
+                    <span style="width: 200px;" class="input-group-addon">Simulate (5-100)</span> 
+                    <input type="number" step="5" min="5" max="100" required class="form-control" value=10 id="numOfSims"> 
+                    <span class="input-group-addon">Times</span>                    
+                </div>
+                <hr>
+                <div id="analysis-content" style="display:none">
+                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                     
+                    <hr>
+                    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                           
+                    <hr>
+                </div>
+
+                <div class="btn-group btn-group-justified">
+                    <a class="btn bdoButton" id="back-to-enchant-button"><span class="glyphicon glyphicon-arrow-left"></span> Enchantment</a>
+                    <a class="btn bdoButton" id="analyze-button">Analyze <span class="glyphicon glyphicon-retweet"></span></a>
+                </div>                
+            </div>            
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12" align="center">
+                        <p>'The Forge' V0.001a - Copyright &copy; Athrael.net 2016</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </footer>
+
+        </div>
+        <!-- /.container -->
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- In <body> -->
+        <script src="Addons/noUiSlider.8.5.1/nouislider.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>        
+
+        <!-- Datatables JS -->
+        <script src="Addons/jquery.dataTables.min.js"></script>
+
+        <!-- JQuery UI -->
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+       
+        <!-- Script to Activate the Carousel 
+        <script>
+                        $('.carousel').carousel({
+                            interval: 5000 //changes the speed
+                        })
+        </script>-->
+
+        <!-- Sim specific js here -->
+        <script src="js/custom.js"></script>
+
+        <!-- Highcharts -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>        
+        <script src="charts/enchantResultChart.js"></script>  
+        <script src="charts/statsChart.js"></script>  
+        
+        <!-- SweetAlert JS -->
+        <script src="Addons/sweetalert/sweetalert.min.js"></script> 
+        
+        <script>
+                        (function (i, s, o, g, r, a, m) {
+                            i['GoogleAnalyticsObject'] = r;
+                            i[r] = i[r] || function () {
+                                (i[r].q = i[r].q || []).push(arguments)
+                            }, i[r].l = 1 * new Date();
+                            a = s.createElement(o),
+                                    m = s.getElementsByTagName(o)[0];
+                            a.async = 1;
+                            a.src = g;
+                            m.parentNode.insertBefore(a, m)
+                        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                        ga('create', 'UA-47296423-7', 'auto');
+                        ga('send', 'pageview');
+
+        </script>
+
+    </body>
+
+</html>

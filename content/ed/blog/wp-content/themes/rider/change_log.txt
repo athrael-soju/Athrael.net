@@ -1,0 +1,25 @@
+Version 1.0
+i)   Theme Submitted for approval
+
+Version 1.0.1
+ii) Resubmitting
+
+Version 1.0.2
+i) Name Fixed
+
+Version 1.0.3
+i).  Added Open Sans font and image licenses in readme.txt
+ii). Fixed CSS issue.
+iii).Set customizer option like Display Header Text,background color.
+iv). Set image validation in theme-options.php
+v).  Set sanitization in all pages.
+vi). provide an un-minified version of html5.js
+vii).Fixed prefixed properly in theme-options.
+
+version 1.0.4
+i) i have fixed the problem of untrusted data for calling the header background image from the theme option
+ii) i have fixed the custom header issue also
+
+version 1.0.5
+i) Add pro theme features tab in theme options.
+ii) update style.css for logo.

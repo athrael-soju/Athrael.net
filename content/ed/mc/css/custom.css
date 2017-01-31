@@ -1,0 +1,30 @@
+
+#params{
+    margin-left: 30%;
+}
+
+div#params > label{
+    text-align: left;
+    width: 30%;
+}
+
+label {
+    display: inline-block; width: 5em;
+}
+fieldset div {
+    margin-bottom: 2em;
+}
+fieldset .help {
+    display: inline-block;
+}
+
+.ui-tooltip {
+    width: 210px;
+}
+.disabled {
+    border: 1px solid #999; color: #333; opacity: 0.5;
+}
+
+.disabled option {
+    color: #000; opacity: 1;
+}

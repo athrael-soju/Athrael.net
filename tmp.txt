@@ -1,0 +1,147 @@
+var precPerRun = [];
+var graphData = [];
+
+$(document).ready(function () {	
+
+	// Adjust inputs to avoid calculation errors
+	function adjustInputFields(fieldVal){
+	var field = fieldVal;
+	while(field.length<2){
+			field = '0'+fieldVal; 
+			}
+			return field;
+	}
+	
+    $(".test-input-field").keyup(function () {
+        if ($(this).val().length > 2) {
+            $(this).val($(this).val().substr(0, 2));
+        }
+    });
+    $(".test-input-field2").keyup(function () {
+        if ($(this).val().length > 4) {
+            $(this).val($(this).val().substr(0, 4));
+        }
+    });
+
+    $("select").change(function () {
+        $("#specialSpan").attr("data-id", $('#pre-selector :selected').val());
+        $.getScript("js/gw2PriceApiCall.js", function () {
+        });
+    });
+
+    $("#submitButton").unbind('click').on("click", function () {
+	
+        var precVal;
+        var id = $("#specialSpan").attr("data-id");
+        precPerRun = [], graphData = [];
+        var precursorsCrafted = 0, investment = 0;
+		var inv2 = document.getElementById("investment2").value, inv3 = document.getElementById("investment3").value;
+        var rare2 = document.getElementById("rareVal2").value, rare3 = document.getElementById("rareVal3").value;		
+		var exo2 = document.getElementById("exoVal2").value, exo3 = document.getElementById("exoVal3").value;		
+				
+	var investment = parseInt(document.getElementById("investment1").value + "" + adjustInputFields(inv2) + "" + adjustInputFields(inv3));
+        var r = parseInt(document.getElementById("rareVal1").value + "" + adjustInputFields(rare2) + "" + adjustInputFields(rare3));					
+        var e = parseInt(document.getElementById("exoVal1").value + "" +  adjustInputFields(exo2) + "" +  adjustInputFields(exo3));        
+		var undercut = parseInt(document.getElementById("undercut").value);
+		
+        if (id == 29185 || id == 29169) {
+            var duskVal = valueObjectMap[29185].sellOrder, dawnVal = valueObjectMap[29169].sellOrder;
+            precVal = parseInt(getCurrencyFormat(duskVal + dawnVal, "raw")) / 2;
+            if ((precVal % 1) != 0)
+                precVal = parseInt(precVal);
+        }
+        else {
+            precVal = parseInt(getCurrencyFormat(valueObjectMap[id].sellOrder, "raw"));
+        }		
+		
+        var sims;
+		
+        if ($('#sim').is(':checked')) {
+            sims = parseInt($("#selectSims option:selected").text());
+        }
+        else {
+            sims = 1;
+        }
+
+        var cost = parseInt((400 * r - 124 * 0.2 * 0.85 * e) / 124);
+        var totalPrecursorsCrafted = 0;
+
+        for (i = 0; i < sims; i++) {
+
+            var gold = investment;
+            var precursorsCrafted = 0;
+
+            while (gold > 0) {
+                gold = gold - cost;
+                var rand = Math.floor((Math.random() * 700) + 1);
+                if (rand === 350) {
+                    precursorsCrafted++;
+                }
+            }
+            precPerRun[i] = precursorsCrafted;
+        }
+        if (typeof precPerRun !== 'undefined') {
+            $.each(precPerRun, function (index, value) {
+                var obj = [index, value];
+                graphData.push(obj);
+                totalPrecursorsCrafted += value;
+            });
+        }
+        var gains = parseInt((totalPrecursorsCrafted * precVal));
+        var gainsAfterFees = gains * .85*((100-undercut)/100)
+        var losses = investment * sims;
+        var total = gainsAfterFees - losses;
+
+        if (total < 0)
+            $("#result-label").text("Net Loss after TP fees:");
+        else if (total > 0)
+            $("#result-label").text("Net Profit after TP fees:");
+        else
+            $("#result-label").text("Net Even after TP fees:");
+
+        $('#expenses').html(getCurrencyFormat(losses, "html"));
+        $('#earnings').html(getCurrencyFormat(gains, "html"));
+        
+        $('#result').html(getCurrencyFormat(total, "html"));
+        $('#numPrecs').html(totalPrecursorsCrafted);
+
+
+        if ($("#graph-choice option:selected").text() == "Bar") {
+            $(function () {
+                drawBarGraph(graphData);
+            });
+        }
+        else if ($("#graph-choice option:selected").text() == "Line") {
+            $(function () {
+                drawLineGraph(graphData);
+            });
+        }
+        else if ($("#graph-choice option:selected").text() == "Scatter") {
+            $(function () {
+                drawScatterGraph(graphData);
+            });
+        }
+        $(window).resize();
+    });
+
+    $(".test-input-field").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A
+                        (e.keyCode == 65 && e.ctrlKey === true) ||
+                        // Allow: Ctrl+C
+                                (e.keyCode == 67 && e.ctrlKey === true) ||
+                                // Allow: Ctrl+X
+                                        (e.keyCode == 88 && e.ctrlKey === true) ||
+                                        // Allow: home, end, left, right
+                                                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                                    // let it happen, don't do anything 
+                                    return;
+                                }
+                                // Ensure that it is a number and stop the keypress
+                                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                    e.preventDefault();
+                                }
+                            });
+
+                });

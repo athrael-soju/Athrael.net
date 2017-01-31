@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--
+    Copyright  (c) 2015 Athrael
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+    The Elite: Dangerous game logic and data in this file remains the property of Frontier Developments plc,
+    and is used here as authorized by Frontier Customer Services (https://forums.frontier.co.uk/showthread.php?t=5349)
+-->
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Merit Calculator</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Sweetalert CSS -->
+        <link rel="stylesheet" href="addons/sweetalert/sweetalert.css">
+
+        <!-- Custom CSS -->
+        <link href="css/base.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+        <link href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+ 
+        <div class="brand">Merit Calculator<h4>With Extra decay</h4></div>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                    <a class="navbar-brand" href="index.html">Merit Calculator</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a id="home-nav" href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a id="config-nav" href="#config">Configure</a>
+                        </li>
+                        <li>
+                            <a id="display-nav" href="#display">Display</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->                
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+        <div class="container" id='home-div' style="display:none;">
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
+                        <hr>
+                        <h2 class="intro-text text-center">About
+                            <strong>this Calculator</strong>
+                        </h2>
+                        <hr>
+                        The Merit Calculator is a simple application which helps players track their Merit acquisition in Powerplay. 
+                        The Merit System works by having previously and newly earned Merits summed together, after a decay is applied. At the end 
+                        of the week and depending on the number of Merits earned, a rank is awarded along with some additional
+                        benefits. For more info, please refer to the <a href="http://elite-dangerous.wikia.com/wiki/Powerplay" target="_blank">wiki</a>.
+                        <hr>
+                    </div>
+                    <button type=button class="btn btn-default btn-block" id="proceed-to-config">Proceed to Configuration</button>  
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id='config-div' style="display:none;" >
+            <!--  Twitter div   -->            
+            <div class="row">
+                <div class="box">       
+                    <div class="col-lg-12">
+                        <hr>
+                        <h2 class="intro-text text-center">About
+                            <strong>the Configuration</strong>
+                        </h2>
+                        <hr>                        
+                        Please specify the amount of weekly merit gains. At this point, the decay is set to 50%.        
+                        Choices include: Constant flow of Merits, Random number between a given range and 
+                        "Retain Rank" which will automatically calculate the needed Merits to be earned in order
+                        to maintain a desired rank.
+                        <hr>    
+
+                        <table id="initMeritTable" class="display" cellspacing="0" width="40%" align="center">
+                            <thead>
+                                <tr >
+                                    <th>Rating</th>
+                                    <th>Weekly Merits</th>
+                                    <th title="Earned by undermining a hostile power in Powerplay.">Weekly Kills (?)</th>
+                                    <th title="Earned by undermining a hostile power in Powerplay. Number is Approximate.">Daily Kills (?)</th>
+                                </tr>                                
+                            </thead>
+                        </table>     
+                        <hr>      
+                        <div id="params" align="left">
+                            <input type="radio" checked><label>Cycles (1-100): </label> <input id="numCycles" type=number min="1" max="100" value="15" required>
+                        </div>
+                        <hr> 
+                        <div id="params" align="left">                            
+                            <input type="checkbox" name ="startingMerits" id="sMerits" ><label>Starting Merits: </label>        
+                            <input id="startingMerits" type=number min="0" max="99999" value="0" title="Your Starting Merits for the first Week." required><br />                            
+                            <input type="radio" name ="radioChoice" id="rRank" checked><label>Retain Rank: </label>        
+                            <select id="retainRank" required>
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br />
+                            <input type="radio" name ="radioChoice" id="wMerits"><label>Constant Gains: </label>        
+                            <input id="weeklyMerits" type=number min="1" max="99999" value="400" required disabled><br />                                               
+                            <input type="radio" name ="radioChoice" id="wMeritRange"><label>Random Range: </label>
+                            <input id="weeklyMeritsFrom" type=number min="1" max="99999" value="0" required disabled> - <input id="weeklyMeritsTo" type=number min="1" max="99999" value="500" required disabled>        
+                        </div>         
+                        <hr>
+                    </div>                    
+                    <button type=button class="btn btn-default btn-block" id="proceed-to-display">Calculate & Proceed to Display</button>           
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id='display-div' style="display:none;" > 
+
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12" >
+                        <hr>
+                        <h2 class="intro-text text-center">About
+                            <strong>the Data</strong>
+                        </h2>
+                        <hr>
+                        This tabular representation of the data shows the number of merits for the following cycles. You can
+                        view your Merit total after up to 100 cycles and the maximum rank you can retain by then. Keep in mind 
+                        that when you are constantly earning the same amount of Merits by the end of every cycle, your total Merits 
+                        will be capped by the 4th cycle.
+                        <hr>
+
+                        <table id="meritsTable" class="display" cellspacing="0" width="30%" align="center">
+                            <thead>
+                                <tr >
+                                    <th>Cycle #</th>
+                                    <th>Cycle Gains</th>
+                                    <th>Total Merits</th>                                    
+                                </tr>
+                            </thead>
+                        </table>    
+
+                        <hr>
+                    </div>
+
+                    <div id="results" align="center">
+
+                    </div>
+                    <div id="rewards" align="center">
+
+                    </div>
+                    <button type=button class="btn btn-default btn-block" id="back-to-config">Back to Configuration</button>           
+                </div>
+
+            </div>
+
+        </div>        
+        <!-- /.container -->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Merit Calculator V0.0.3b. Copyright &copy; Athrael 2015</p> 
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- jQuery -->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
+
+        <!-- Custom JS -->
+        <script src="js/custom.js"></script>
+
+        <!-- Sweetalert JS -->
+        <script src="addons/sweetalert/sweetalert.min.js"></script> 
+
+        <!-- Datatables JS -->
+        <script src="js/jquery.dataTables.min.js"></script>
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-47296423-5', 'auto');
+            ga('send', 'pageview');
+
+        </script>        
+
+    </body>
+</html>

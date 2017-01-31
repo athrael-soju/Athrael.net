@@ -1,0 +1,90 @@
+<!-- Config Div   -->
+<div id="config-div" style="display:none" class="settingsText">
+    <form role="form" id="mainForm">  
+        <h1 align="center">Each Heavy Crafting Bag Contains</h1>    
+        <br />
+        <!-- Materials Start below -->
+        <h2 align="center">3 T-6 Fine Crafting Mats: </h2>                         
+        <div class = "desktopLeft">        
+            <div>            
+                <label>Ancient Bone: </label> <span data-name="Ancient Bone" class="gw2-tpprice" data-id="24358">…</span><br />
+                <label>Vicious Claw: </label><span data-name="Vicious Claw" class="gw2-tpprice" data-id="24351">…</span><br />
+                <label>Pile of Crystalline Dust: </label><span data-name="Pile of Crystalline Dust" class="gw2-tpprice" data-id="24277">…</span><br />
+                <label>Vicious Fang: </label><span data-name="Vicious Fang" class="gw2-tpprice" data-id="24357">…</span><br />
+            </div>
+        </div>
+        <div class = "desktopRight">        
+            <div>            
+                <label>Armored Scale: </label><span data-name="Armored Scale" class="gw2-tpprice" data-id="24289">…</span><br />
+                <label>Elaborate Totem: </label><span data-name="Elaborate Totem" class="gw2-tpprice" data-id="24300">…</span><br />
+                <label>Powerful Venom Sac: </label><span data-name="Powerful Venom Sac" class="gw2-tpprice" data-id="24283">…</span><br />
+                <label>Vial of Powerful Blood:</label><span data-name="Vial of Powerful Blood" class="gw2-tpprice" data-id="24295">…</span><br />            
+            </div>
+        </div>            
+        <br />
+        <button type=button class="btn btn-success btn-block" id="proceed-to-sim-button">Proceed to Sim</button>           
+    </form>
+    <br />
+</div>
+<!--  Sim Div  -->
+<div id="sim-div" style="display:none">
+    <h1 class="settingsText" align="center">Sim</h1>
+    <div>        
+        <h2 class="settingsText">Parameters</h2>
+        <label for="selectSims" class="settingsText">Heavy Crafting Bags: </label>
+        <select id="selectSims">
+            <option>1</option>
+            <option>5</option>
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+            <option>1000</option>
+            <option>10000</option>
+        </select>
+        <label for="selectGraph" class="settingsText">Graph Type: </label>
+        <select id="graph-choice">
+            <option>3D Pie</option>
+        </select>                    
+        <button type=button class="btn btn-success btn-block" id="submitButton">Go!</button>
+    </div>    
+    <div class="settingsText">
+        <h2 class="">Results</h2>
+            <div class="desktopLeft">
+                <label for=earnings>Earnings (Buy Order):</label><span id=earnings></span><br />
+                <label for=earnings2>Earnings (Sell Order):</label><span id=earnings2></span>
+            </div>
+            <div class="desktopRight">
+                <label for=result id="result-label">Net Profit (Buy Order):</label><span id=result></span><br />
+                <label for=result2 id="result-label2">Net Profit(Sell Order):</label><span id=result2></span>
+            </div>                    
+    </div>
+    <br />
+    <div id="container" style="min-width: 200px; height: 400px; margin: 0 auto"></div> 
+    <br />    
+</div>         
+<div id="sim-info-div"  class="container settingsText" style="display:none;">
+    <h1 align="center">About this Sim</h1>
+    <h2 class="">What is a Laurel?</h2>
+    Laurels are an account-bound non-tradeable currency that players can use to purchase items from laurel merchants, located in each major city. 
+    Laurels can be obtained as login rewards. The amount of laurels a player holds can be viewed by hovering over the '+' sign in the lower right
+    of the inventory window, or from the Wallet tab in the Hero panel. For more info, refer to the <a href='https://wiki.guildwars2.com/wiki/Laurel' target="_blank">Wiki</a>. 
+    <h2 class="">Purpose of this Sim</h2>
+    This sim aims to emulate the in-game activity of generating Gold by buying Heavy Crafting Bags with Laurels, opening them for T6 Materials
+    and selling them in the Tradepost. By running this application, players can get insight on approximately how much gold they can generate,
+    given a number of Crafting bugs. Crafting Material data regarding sell/buy values is currently retrieved and updated from the official GW2 api.
+    <h2 class="">Can you turn this process into Gold??</h2>
+    Absolutely; This is what this process all about. Amount of gold earned, however depends on the current state of the market.
+    <h2 class="">Why should i trust this Sim?</h2>
+    Generally speaking, you don't have to. If you are here, chances are that you are a person who likes to personally find out whether numbers add up or not. 
+    You are more than welcome to check out the code, report bugs and contribute in development.
+    <h2 class="">What else?</h2>    
+    For the sake of simplicity, some numbers/percentages may have been normalized and or rounded up. 
+    If you have data for this sim, don't hesitate to share!
+    <br />
+</div>   
+
+<!-- Sim specific js here -->
+<script src="js/laurel.js"></script>
+<script src="js/gw2PriceApiCall.js"></script>
+<!-- Custom graphs here -->
+<script src="graphs/pie.js"></script>

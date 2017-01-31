@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--
+
+    Copyright (c) 2015 Athrael
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+    The Elite: Dangerous game logic and data in this file remains the property of Frontier Developments plc,
+    and is used here as authorized by Frontier Customer Services (https://forums.frontier.co.uk/showthread.php?t=5349)
+-->
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Powerplay Herald</title>
+
+        <!-- JQuery UI CSS -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+        <!-- Sweetalert CSS -->
+        <link rel="stylesheet" href="addons/sweetalert/sweetalert.css">
+
+        <!-- Custom CSS -->
+        <link href="css/base.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+        <link href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap Multiselect CSS -->
+        <link rel="stylesheet" href="addons/multiselect/bootstrap-multiselect.css" type="text/css"/>        
+
+        <!-- Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div class="brand">Powerplay Herald<h4>Keeping you up to date with Powerplay news and Analysis</h4></div>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                    <a class="navbar-brand" href="index.html">Powerplay Herald</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a id="ranks-nav" href="#ranks">Ranks</a>
+                        </li>
+                        <li>
+                            <a id="data-analysis-nav" href="#data-analysis">Data Analysis</a>
+                        </li>
+                        <li>
+                            <a id="power-analysis-nav" href="#power-analysis">Power Analysis</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->                
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+        <div class="container" id='ranks-div'>
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12 text-center">
+                        <hr>
+                        <h2 class="intro-text">Power
+                            <strong>Ranks</strong>
+                        </h2>
+                        <hr>
+                        <div align="left">
+                            This section displays how the Power Leaders compare to each other in the number of
+                            Controlled Systems, Taking Control, Contested Systems, Systems in Turmoil, Blocked Systems 
+                            they have. The Ranks update weekly by data received directly from Frontier Developments.
+                            <hr>
+                        </div>
+                        <div align="center">
+                            <em>Rank By: </em><br />
+                            <div class="btn-group btn btn-default" >
+                                <a id="rank-factor" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Controlled Systems
+                                    <span class="caret"></span>
+                                </a>
+                                <ul id="rank-dropdown" class="dropdown-menu" style="text-align: center;">
+                                    <li><a href="#">Taking Control</a></li>
+                                    <li><a href="#">Contested Systems</a></li>
+                                    <li><a href="#">Systems in Turmoil</a></li>
+                                    <li><a href="#">Blocked Systems</a></li>
+                                    <li><a href="#">Controlled Systems</a></li>                                    
+                                </ul>
+                            </div>
+                            <div id="power-ranks">
+
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <button type=button class="btn btn-default btn-block" id="proceed-to-data-analysis">Proceed to Data Analysis</button>  
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id='data-analysis-div' style="display:none;" >
+            <!--  Twitter div   -->            
+            <div class="row">
+                <div class="box">       
+                    <div class="col-lg-12 text-center">
+                        <hr>
+                        <h2 class="intro-text">Data
+                            <strong>Analysis</strong>
+                        </h2>
+                        <hr>  
+                        <div align="left">
+                            Data Analysis allows players to choose a Powerplay activity and view a chart with the performance of 
+                            each Power leader in that activity. The Overall activity charts show data from Cycle 2 onward and 
+                            the Weekly Activity/Economy show data for the latest Cycle.
+                            <hr>               
+                        </div>                        
+                        <em>Select Powers: </em><br />
+                        <select multiple="multiple" id="powers-list"> 
+                            <option value="Hudson" selected>Hudson</option>
+                            <option value="Winters" selected>Winters</option>
+                            <option value="Arissa" selected>Arissa</option>     
+                            <option value="Aisling" selected>Aisling</option>  
+                            <option value="Torval" selected>Torval</option>  
+                            <option value="Patreus" selected>Patreus</option>  
+                            <option value="Mahon" selected>Mahon</option>  
+                            <option value="Sirius" selected>Sirius</option>  
+                            <option value="Archon" selected>Archon</option>  
+                            <option value="Antal" selected>Antal</option>  
+                        </select>                    
+                        <br /><br />
+                        <div class="btn-group btn btn-default">
+                            <a id="selectChart" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Select Chart Type
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="selectChart-dropdown" class="dropdown-menu" style="text-align: center;">
+                                <li><a href="#">Cumulative Military Activity</a></li>
+                                <li><a href="#">Latest Military Activity</a></li>
+                                <!---<li><a href="#">Latest Economic Activity</a></li>                                -->
+                                <li><a href="#">Latest Power Ranks</a></li>                                
+                            </ul>
+                        </div>
+                        <br /><br />
+                        <!--<em>Select Chart: </em><br />-->
+                        <div id="cumulativeAct-div" class="btn-group btn btn-default">
+                            <a id="cumulativeAct" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Cumulative Military Activity
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="cumulativeAct-dropdown" class="dropdown-menu" style="text-align: center;">
+                                <li><a href="#">Preparation</a></li>
+                                <li><a href="#">Fortification</a></li>
+                                <li><a href="#">Expansion</a></li>
+                                <li><a href="#">Undermining</a></li>
+                                <li><a href="#">Opposition</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="latestEcon-div" class="btn-group btn btn-default">
+                            <a id="latestEcon" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Latest Military Activity 
+                                <span class="caret"></span>
+                            </a> 
+                            <ul id="latestEcon-dropdown" class="dropdown-menu" style="text-align: center;">
+                                <li><a href="#">Exploited & Controlled</a></li>
+                                <li><a href="#">Income, Upkeep<br /> & Overhead</a></li>
+                                <li><a href="#">Available CC</a></li>
+                            </ul>
+                        </div>                        
+
+                        <div id="latestAct-div" class="btn-group btn btn-default">
+                            <a id="latestAct" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Latest Economic Activity
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="latestAct-dropdown" class="dropdown-menu" style="text-align: center;">
+                                <li><a href="#">Preparation, Fortification<br /> & Expansion</a></li>
+                                <li><a href="#">Undermining & Opposition</a></li>
+                                <li><a href="#">Preparation & Fortification</a></li>
+                            </ul>
+                        </div>                        
+
+                        <div id="latestRanks-div" class="btn-group btn btn-default">
+                            <a id="latestRanks" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Latest Power Ranks
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="latestRanks-dropdown" class="dropdown-menu" style="text-align: center;">
+                                <li><a href="#">Taking Control</a></li>
+                                <li><a href="#">Contested Systems</a></li>
+                                <li><a href="#">Systems in Turmoil</a></li>
+                                <li><a href="#">Blocked Systems</a></li>
+                                <li><a href="#">Controlled Systems</a></li> 
+                            </ul>
+                        </div>                        
+                        <div id="container" style="min-width: 200px; height: 400px; margin: 0 auto"></div>
+                    </div>                    
+                    <button type=button class="btn btn-default btn-block" id="proceed-to-power-analysis">Proceed to Power Analysis</button>           
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id='power-analysis-div' style="display:none;" > 
+
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12 text-center" >
+                        <hr> 
+                        <h2 class="intro-text ">Power
+                            <strong>Analysis</strong>
+                        </h2>
+                        <hr>
+                        <div align="left">
+                            Power Analysis is a section where creative writers share their views on each Power's performance for past cycles, 
+                            as well as their guesses & estimations for the cycles to come. This where we get creative and get immersed with 
+                            the Lore generated by players involved in Powerplay, while providing accurate, informative and objective posts.                            
+                            <hr>
+                        </div>
+
+                        <div id="tabs" align="left" style="background: inherit; ">
+
+                        </div>
+
+                        <br />
+                    </div>
+                    <button type=button class="btn btn-default btn-block" id="back-to-data-analysis">Back to Data Analysis</button>           
+                </div>
+            </div>
+        </div>        
+        <!-- /.container -->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Powerplay Herald V0.0.6b Copyright &copy; Athrael 2015</p> 
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- jQuery -->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>       
+
+        <!-- jQueryUI -->
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
+
+        <!-- Custom JS -->
+        <script src="js/custom.js"></script>
+
+        <!-- Custom Json Data -->
+        <script src="data/cycle_activity.js"></script>
+        <script src="data/cycle_analysis.js"></script>
+        <script src="data/cycle_ranks.js"></script>
+        <script src="data/cycle_economy.js"></script>
+
+        <!-- Custom JS Graphs -->
+        <script src="charts/line.js"></script>
+        <script src="charts/stacked.js"></script>
+        <script src="charts/bar.js"></script>
+        <script src="charts/pie.js"></script>
+
+        <!-- Bootstrap Multiselect JS: -->
+        <script type="text/javascript" src="addons/multiselect/bootstrap-multiselect.js"></script>        
+
+        <!-- Latest HighCharts -->
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-3d.js"></script>       
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>   
+
+        <!-- Sweetalert JS -->
+        <script src="addons/sweetalert/sweetalert.min.js"></script> 
+
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-47296423-6', 'auto');
+            ga('send', 'pageview');
+        </script>    
+
+    </body>
+</html>

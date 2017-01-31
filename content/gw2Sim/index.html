@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+    Copyright  (c) 2015 Athrael
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Guild Wars 2 Simulator</title>         
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../../favicon.ico" type="image/x-icon">        
+        <meta name="generator" content="Bootply" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]--> 
+        <link href="css/styles.css" rel="stylesheet">
+
+        <link href="css/grid.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="addons/sweetalert/sweetalert.css">
+    </head> 
+    <body>
+
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="config-nav" style="display:none"><a  href="#config">Config</a></li>
+                        <li id="sim-nav" style="display:none"><a href="#sim">Sim</a></li>		
+                        <li id="sim-info-nav" style="display:none"><a href="#siminfo">About this Sim</a></li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!--  Home div   -->
+            <div id="home" class="text-left">
+                <h1 class="settingsText">Welcome to the <a href="https://www.guildwars2.com/en-gb/" target="_blank">Guild wars 2</a> Simulator. 
+                    <small>The First Mystic Forge Analysis and Simulation Tool.</small>
+                </h1>
+                <br />
+                <h3 class="settingsText group-elements">Choose your sim:</h3> 
+
+                <select id="sim-choice" class="group-elements">
+                    <option value="Laurel">Laurel</option>
+                    <option value="Precursor">Precursor</option>   
+                    <option value="Mystic Clover">Mystic Clover</option>                    
+                </select>      
+                <button type=button class="btn btn-success btn-block" id="select-sim-button">Proceed to Configuration</button>
+                <br />
+                <!-- Feedwind code -->
+                <script type="text/javascript">
+                    document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');
+                </script>
+                <script type="text/javascript" src="js/feedwind.js"></script>
+                <div style="font-size:10px;  width:auto;" >
+                    <a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">GW2 RSS</a><!--Please display the above link in your web page according to Terms of Service.-->
+                </div>
+                <!-- end feedwind code -->        
+                <br />
+            </div>    
+
+            <!--  About div   -->
+            <div id="about" class="text-left settingsText" style="display:none;">
+
+                <h1>About the Gw2 Simulator</h1>
+                <p>                  
+                    This Application is a personal project inspired by this <a href="http://www.reddit.com/r/Guildwars2/comments/1y28tg/guide_mystic_forging_precursors_for_profit/" target="_blank">reddit post</a> and aims to simulate the math behind the post into a simple web based Precursor Simulator. As the project expands i will be adding more simulations which refer to famous (or infamous) in-game activities such as a Mystic Clover Simulator and so on... If you want to know more about how the Precursor Simulator works please visit the reddit post. As for the implementation, i used JQuery and Javascript as an attempt to get better at it. 
+                </p>                  
+                <p>                                    
+                    For any Questions, bugs or feedback, refer to the following links: 
+                <p>                      
+                    <a href="mailto:athrael.gw2@gmail.com/" target="_blank">Email</a> | <a href="https://twitter.com/Athraelgw2" target="_blank">Twitter</a> | <a href="https://github.com/athraelT" target="_blank">Github</a> | In Game: Ath.2531 
+                </p>                  
+                <p>                  
+                    Happy forging!
+                </p>                  
+                <br />
+                <p>                  
+                    Athrael
+                </p>
+
+                <br />            
+                Available for use under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+                <br /><br />                    
+                GW2 Simulator V0.3.0b, developed by Athrael © 2015 ArenaNet, Inc. All rights reserved.
+                <br /><br />
+                <p style="color: RED" >          
+                    <strong>DISCLAIMER: I do not take any responsibility for any in game currency lost by using this application.</strong>
+                </p>                    
+                <br />
+            </div>              
+        </div>
+
+        <div class="navbar-fixed-bottom settingsText">
+            <button id="copyright-button" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="GW2 Simulator V0.3.0b, developed by Athrael © 2015 ArenaNet, Inc. All rights reserved."><strong>©</strong></button>    
+        </div>   
+        <!-- Sim specific content goes here -->
+        <div class="container" id="content"></div><!-- /.container -->
+
+        <!-- script references -->	
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>        
+
+        <!-- Latest HighCharts -->
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-3d.js"></script>       
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>          
+        <!-- Custom js here -->
+        <script src="js/custom.js"></script> 
+
+        <!-- Addons -->
+        <script src="addons/sweetalert/sweetalert.min.js"></script> 
+        <!--<script src="addons/masonry.pkgd.min.js"></script> -->
+
+        <!-- Google analytics here -->
+        <script src="js/ga.js"></script>
+
+    </body>
+
+</html>

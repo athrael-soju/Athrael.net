@@ -1,0 +1,76 @@
+.ui-tooltip {
+    width: 210px;
+}
+.disabled {
+    border: 1px solid #999; color: #333; opacity: 0.5;
+}
+
+.disabled option {
+    color: #000; opacity: 1;
+}
+
+.tab-panel{
+    height: 600px;
+    overflow: auto;
+}
+
+.powers-div{
+    float: left; 
+    clear: left; 
+}
+
+.powers-h {
+    text-align: center; 
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.powers-p{
+    float: left; 
+    font-size:1em;
+}
+
+.powers-img{
+    height: 7.5%; 
+    width:7.5%; 
+    float: left; 
+    margin-right:10px;
+}
+
+#tabs .scroller { 
+    overflow: auto; 
+} 
+#tabs ul { 
+    width: 1660px; 
+}
+
+#tabs { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs .ui-widget-header { 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid #c0c0c0; 
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs .ui-tabs-nav .ui-state-default { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs .ui-tabs-nav .ui-state-active {  
+    background: transparent url(../img/uiTabsArrow.png) no-repeat bottom center; 
+    border: none; 
+} 
+#tabs .ui-tabs-nav .ui-state-default a { 
+    color: #333; 
+} 
+#tabs .ui-tabs-nav .ui-state-active a { 
+    color: #337ab7; 
+}
+
+#selectCycle-dropdown {
+    height:200px;
+    overflow-y: scroll;
+}

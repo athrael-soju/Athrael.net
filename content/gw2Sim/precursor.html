@@ -1,0 +1,146 @@
+<!-- Config Div   -->
+<div id="config-div" style="display:none">
+    <h1 align="center" class="settingsText">Configure the Precursor Simulator</h1>
+
+    <form role="form" id="mainForm">            
+        <h2 class="settingsText">Select a Precursor</h2>        
+        <div class="block">
+            <label>
+                <select  id="pre-selector">
+                    <option class="gw2-pre" value="29185">Dusk</option>
+                    <option class="gw2-pre" value="29166">Tooth of Frostfang</option>
+                    <option class="gw2-pre" value="29167">Spark</option>
+                    <option class="gw2-pre" value="29168">The Bard</option>
+                    <option class="gw2-pre" value="29169">Dawn</option>
+                    <option class="gw2-pre" value="29170">The Colossus</option>
+                    <option class="gw2-pre" value="29171">Carcharias</option>
+                    <option class="gw2-pre" value="29172">Leaf of Kudzu</option>
+                    <option class="gw2-pre" value="29173">The Energizer</option>
+                    <option class="gw2-pre" value="29175">The Hunter</option>
+                    <option class="gw2-pre" value="29176">Storm</option>
+                    <option class="gw2-pre" value="29177">The Chosen</option>
+                    <option class="gw2-pre" value="29178">The Lover</option>
+                    <option class="gw2-pre" value="29179">Rage</option>
+                    <option class="gw2-pre" value="29180">The Legend</option>
+                    <option class="gw2-pre" value="29181">Zap</option>
+                    <option class="gw2-pre" value="29182">Rodgort's Flame</option>
+                    <option class="gw2-pre" value="29183">Venom</option>
+                    <option class="gw2-pre" value="29184">Howl</option>                                            
+                </select>           
+            </label>
+            <span id="specialSpan" class="gw2-tpprice settingsText" data-id="29185">...</span>     
+            <span class="gw2-tpprice settingsText" data-id="29169" style="display:none">...</span>       
+            <span class="gw2-tpprice settingsText" data-id="29185" style="display:none">...</span>       
+        </div>
+        <h2 class="settingsText">Parameters</h2>
+
+        <label for=investment class="settingsText block">Gold Investment:</label>
+        <div class="input-block">
+            <input class="test-input-field2" id="investment1" type=number min="0" max="99999" value="500" required><img src="img/tp/Gold_coin.png" alt="Gold" />
+            <input class="test-input-field" id="investment2" type=number min="0" max="99" value ="0" required><img src="img/tp/Silver_coin.png" alt="Silver" />
+            <input class="test-input-field" id="investment3" type=number min="0" max="99" value ="0" required><img src="img/tp/Copper_coin.png" alt="Copper" />
+        </div>                
+
+        <label for=rareVal class="settingsText block">Rare Buy Value:</label>
+        <div class="input-block">
+            <input class="test-input-field" id="rareVal1" type=number min="0" max="9999" value="0" required ><img src="img/tp/Gold_coin.png" alt="Gold" />
+            <input class="test-input-field" id="rareVal2" type=number min="0" max="99" value ="65" required><img src="img/tp/Silver_coin.png" alt="Silver" />
+            <input class="test-input-field" id="rareVal3" type=number min="0" max="99" value ="0" required><img src="img/tp/Copper_coin.png" alt="Copper" />
+        </div>          
+
+        <label for=exoVal class="settingsText block">Exotic Sell Value:</label>
+        <div class="input-block">
+            <input class="test-input-field" id=exoVal1 type=number min="0" max="99" value="4" required ><img src="img/tp/Gold_coin.png" alt="Gold" />
+            <input class="test-input-field" id=exoVal2 type=number min="0" max="99" value ="0" required><img src="img/tp/Silver_coin.png" alt="Silver" />
+            <input class="test-input-field" id=exoVal3 type=number min="0" max="99" value ="0" required><img src="img/tp/Copper_coin.png" alt="Copper" />
+        </div>
+
+        <label for=undercut class="settingsText block">Sale Undercut %:</label>
+        <div class="input-block">
+            <input class="test-input-field" id=undercut name=undercut type=number value="1" min="00" max="99" required >
+        </div>
+        <br />
+        <button type=button class="btn btn-success btn-block" id="proceed-to-sim-button">Apply & Proceed to Sim</button>           
+    </form>
+    <br /> 
+</div>
+<!--  Sim Div  -->
+<div id="sim-div" style="display:none">
+    <h1 class="settingsText" align="center">Sim</h1>
+    <div>
+        <h2 class="settingsText">Additional Parameters</h2>
+        <label for="selectSims" class="settingsText">Simulations </label>
+        <select id="selectSims">
+            <option>1</option>
+            <option>5</option>
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+        <label for="graph-choice" class="settingsText">Graph Type: </label>
+        <select id="graph-choice">
+            <option>Bar</option>
+            <option>Line</option>
+            <option>Scatter</option>
+        </select>                    
+        <button type=button class="btn btn-success btn-block" id="submitButton">Go!</button>
+    </div>                     
+    <div class="settingsText">
+        <h2 class="">Results</h2>
+        <div class="desktopLeft">
+            <label for=mean >Mean: </label>
+            <span id=mean></span>                        
+            <br />
+            <label for=expenses >Expenses:</label>
+            <span id=expenses></span>
+            <br />
+            <label for=earnings>Earnings:</label>
+            <span id=earnings></span>        
+        </div>   
+        <div class="desktopRight">
+            <label for=stdev >Standard Deviation: </label>
+            <span id=stdev></span>                
+            <br />
+            <label for=numPrecs >Precursors:</label>
+            <span id=numPrecs></span>
+            <br />
+            <label for=result id="result-label">Gold Earned/Lost:</label>
+            <span id=result></span>                        
+        </div>
+        <br />                        
+        <div id="container" style="min-width: 200px; height: 400px; margin: 0 auto"></div> 
+        <br />
+        <button type=button class="btn btn-success btn-block" id="proceed-to-anl-button" style="display:none;">Proceed to Detailed Analysis</button>
+        <br />      
+    </div>                           
+</div>         
+<div id="sim-info-div"  class="container settingsText" style="display:none;">
+    <h1 align="center">About this Sim</h1>
+    <h2 class="">What is a Legendary?</h2>
+    Legendary weapons are a set of high-end weapons that have unique appearances. They have the same stats as ascended weapons, 
+    however they also have functionality to allow their inherent stat combo to be changed to any other stat combo when out of combat. 
+    They are crafted in the Mystic Forge. Each legendary weapon requires four components: a specific exotic precursor weapon, a Gift of 
+    Fortune, a Gift of Mastery and a final gift specific to the desired legendary weapon. For more info, refer to the <a href='https://wiki.guildwars2.com/wiki/Legendary_weapon' target="_blank">Wiki</a>. 
+    <h2 class="">Purpose of this Sim</h2>
+    This sim aims to emulate the in-game activity of generating Legendaries in the Mystic Forge. 
+    By running this application, the player can get insight on how Legendaries are generated and what happens when an attempt fails. 
+    Precursor data regarding sell/buy values is currently retrieved and updated from the official GW2 api.
+    <h2 class="">Can you turn this process into Gold??</h2>
+    Short Answer: Yes! Long answer, refer to  <a href='http://en.wikipedia.org/wiki/Law_of_large_numbers' target="_blank">Law of Large Numbers</a>. 
+    I have personally NOT used this process to make gold, but others have. As the original poster in the reddit mentioned, precursor crafting CAN be used to effectively 
+    make gold, but there is a very real chance of making a loss. 
+    <h2 class="">Why should i trust this Sim?</h2>
+    Generally speaking, you don't have to. If you are here, chances are that you are a person who likes to personally find out whether numbers add up or not. 
+    You are more than welcome to check out the code, report bugs and contribute in development.
+    <h2 class="">What else?</h2>
+    I got the algorithm behind this sim from <a href='http://www.reddit.com/r/Guildwars2/comments/1y28tg/guide_mystic_forging_precursors_for_profit/' target="_blank">this reddit post</a>. 
+    For the sake of simplicity, some numbers/percentages have been normalized and or rounded up. If you have data for this sim, don't hesitate to share!
+</div>   
+
+<!-- Sim specific js here -->
+<script src="js/precursor.js"></script>
+<script src="js/gw2PriceApiCall.js"></script>
+<!-- Custom graphs here -->
+<script src="graphs/bar.js"></script>
+<script src="graphs/line.js"></script>
+<script src="graphs/scatter.js"></script>            

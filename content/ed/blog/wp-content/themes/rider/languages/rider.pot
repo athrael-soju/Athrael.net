@@ -1,0 +1,385 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rider​ V1.0.4\n"
+"POT-Creation-Date: 2015-03-23 16:24+0530\n"
+"PO-Revision-Date: 2015-03-23 16:25+0530\n"
+"Last-Translator: FasterThemes <support@fasterthemes.com>\n"
+"Language-Team: FasterThemes <support@fasterthemes.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:10
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr ""
+
+#: archive.php:44 author.php:44 category.php:44 index.php:55 search.php:44
+#: tag.php:44
+msgid "READ MORE"
+msgstr ""
+
+#: author.php:10
+#, php-format
+msgid "All posts by %s"
+msgstr ""
+
+#: category.php:10
+#, php-format
+msgid "Category : %s"
+msgstr ""
+
+#: comments.php:14 inc/theme-default-setup.php:87
+#, php-format
+msgid "1 Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: footer.php:13 header.php:32 header.php:85 header.php:147
+#: theme-options/theme-options.php:121
+msgid "logo"
+msgstr ""
+
+#: footer.php:30
+#, php-format
+msgid "Powered by %1$s and %2$s."
+msgstr ""
+
+#: functions.php:10
+msgid "Main Menu"
+msgstr ""
+
+#: inc/breadcrumbs.php:9 index.php:20
+msgid "Home"
+msgstr ""
+
+#: inc/breadcrumbs.php:28
+msgid "category"
+msgstr ""
+
+#: inc/breadcrumbs.php:31
+msgid "Search Results For"
+msgstr ""
+
+#: inc/breadcrumbs.php:89
+msgid "Posts tagged"
+msgstr ""
+
+#: inc/breadcrumbs.php:94
+msgid "Articles posted by "
+msgstr ""
+
+#: inc/breadcrumbs.php:97
+msgid "Error 404"
+msgstr ""
+
+#: inc/breadcrumbs.php:102
+msgid "Page"
+msgstr ""
+
+#: inc/theme-default-setup.php:18
+msgctxt "OpenSans font: on or off"
+msgid "on"
+msgstr ""
+
+#: inc/theme-default-setup.php:29
+msgid "Main Sidebar"
+msgstr ""
+
+#: inc/theme-default-setup.php:31
+msgid "Main sidebar that appears on the right."
+msgstr ""
+
+#: inc/theme-default-setup.php:58
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: inc/theme-default-setup.php:63 inc/theme-default-setup.php:65
+msgid "Category : "
+msgstr ""
+
+#: inc/theme-default-setup.php:63 inc/theme-default-setup.php:65
+#: inc/theme-default-setup.php:67
+msgid "Author : "
+msgstr ""
+
+#: inc/theme-default-setup.php:63 inc/theme-default-setup.php:65
+#: inc/theme-default-setup.php:67
+msgid "Tags : "
+msgstr ""
+
+#: inc/theme-default-setup.php:80 inc/theme-default-setup.php:83
+msgid "No Comments"
+msgstr ""
+
+#: inc/theme-default-setup.php:85
+msgid " Comments"
+msgstr ""
+
+#: inc/theme-default-setup.php:102
+msgid "Previous"
+msgstr ""
+
+#: inc/theme-default-setup.php:103
+msgid "Next"
+msgstr ""
+
+#: inc/theme-default-setup.php:128
+msgctxt "comment form placeholder"
+msgid "Name *"
+msgstr ""
+
+#: inc/theme-default-setup.php:140
+msgctxt "comment form placeholder"
+msgid "Email Id *"
+msgstr ""
+
+#: inc/theme-default-setup.php:151
+msgctxt "comment form placeholder"
+msgid "Website URl"
+msgstr ""
+
+#: inc/theme-default-setup.php:168
+msgctxt "comment form placeholder"
+msgid "Comment"
+msgstr ""
+
+#: index.php:15
+msgid "My Blog"
+msgstr ""
+
+#: index.php:21
+msgid "Blog"
+msgstr ""
+
+#: page-templates/full-width.php:31 page-templates/left-sidebar.php:34
+#: page.php:31 single.php:45
+msgid "Pages"
+msgstr ""
+
+#: page-templates/full-width.php:38 page-templates/left-sidebar.php:41
+#: page.php:38 single.php:52
+msgid "Edit"
+msgstr ""
+
+#: page-templates/home-page.php:75 page-templates/home-page.php:96
+#: page-templates/home-page.php:117
+msgid "Comments"
+msgstr ""
+
+#: page-templates/home-page.php:76 page-templates/home-page.php:97
+#: page-templates/home-page.php:118
+msgid "Posted By"
+msgstr ""
+
+#: search.php:10
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: search.php:51
+msgid "Not Found"
+msgstr ""
+
+#: tag.php:10
+#, php-format
+msgid "Tag Archives : %s"
+msgstr ""
+
+#: theme-options/theme-options.php:54
+msgid "Rider Theme Options"
+msgstr ""
+
+#: theme-options/theme-options.php:55 theme-options/theme-options.php:85
+msgid "Theme Options"
+msgstr ""
+
+#: theme-options/theme-options.php:81
+msgid "FasterThemes"
+msgstr ""
+
+#: theme-options/theme-options.php:86 theme-options/theme-options.php:355
+msgid "Save Options"
+msgstr ""
+
+#: theme-options/theme-options.php:95
+msgid "Basic Settings"
+msgstr ""
+
+#: theme-options/theme-options.php:96
+msgid "Header Settings"
+msgstr ""
+
+#: theme-options/theme-options.php:97
+msgid "Footer Settings"
+msgstr ""
+
+#: theme-options/theme-options.php:98
+msgid "Social Settings"
+msgstr ""
+
+#: theme-options/theme-options.php:99
+msgid "Home Settings"
+msgstr ""
+
+#: theme-options/theme-options.php:112
+msgid "Site Logo (Recommended Size : 230px * 220px)"
+msgstr ""
+
+#: theme-options/theme-options.php:114
+msgid "Size of Logo should be exactly 230x220px for best results."
+msgstr ""
+
+#: theme-options/theme-options.php:117 theme-options/theme-options.php:135
+#: theme-options/theme-options.php:153 theme-options/theme-options.php:181
+#: theme-options/theme-options.php:200 theme-options/theme-options.php:295
+msgid "No file chosen"
+msgstr ""
+
+#: theme-options/theme-options.php:118 theme-options/theme-options.php:136
+#: theme-options/theme-options.php:154 theme-options/theme-options.php:182
+#: theme-options/theme-options.php:201 theme-options/theme-options.php:296
+msgid "Upload"
+msgstr ""
+
+#: theme-options/theme-options.php:130
+msgid "Menu Logo (Recommended Size : 190px * 25px)"
+msgstr ""
+
+#: theme-options/theme-options.php:132 theme-options/theme-options.php:197
+msgid "Size of Logo should be exactly 190x25px for best results."
+msgstr ""
+
+#: theme-options/theme-options.php:139
+msgid "menu-logo"
+msgstr ""
+
+#: theme-options/theme-options.php:148
+msgid "Favicon (Recommended Size : 32px * 32px)"
+msgstr ""
+
+#: theme-options/theme-options.php:150
+msgid "Size of favicon should be exactly 32x32px for best results."
+msgstr ""
+
+#: theme-options/theme-options.php:157
+msgid "favicon"
+msgstr ""
+
+#: theme-options/theme-options.php:164 theme-options/theme-options.php:341
+#: theme-options/theme-options.php:344
+msgid "Blog Title"
+msgstr ""
+
+#: theme-options/theme-options.php:176
+msgid "Header Backgroung Image (Recommended Size : 1350px * 667px)"
+msgstr ""
+
+#: theme-options/theme-options.php:179
+msgid "Size of Logo should be exactly 1350x667px for best results."
+msgstr ""
+
+#: theme-options/theme-options.php:195
+msgid "Footer Logo (Recommended Size : 190px * 25px)"
+msgstr ""
+
+#: theme-options/theme-options.php:204
+msgid "footer-logo"
+msgstr ""
+
+#: theme-options/theme-options.php:213 theme-options/theme-options.php:323
+msgid "Short Description"
+msgstr ""
+
+#: theme-options/theme-options.php:216
+msgid "100 words short description to display in the footer."
+msgstr ""
+
+#: theme-options/theme-options.php:222
+msgid "Copyright Text"
+msgstr ""
+
+#: theme-options/theme-options.php:225
+msgid ""
+"Some text regarding copyright of your site, you would like to display in the "
+"footer."
+msgstr ""
+
+#: theme-options/theme-options.php:234
+msgid "Facebook"
+msgstr ""
+
+#: theme-options/theme-options.php:237
+msgid "Facebook profile or page URL "
+msgstr ""
+
+#: theme-options/theme-options.php:242
+msgid "Twitter"
+msgstr ""
+
+#: theme-options/theme-options.php:245
+msgid "Twitter profile or page URL "
+msgstr ""
+
+#: theme-options/theme-options.php:251
+msgid "Youtube"
+msgstr ""
+
+#: theme-options/theme-options.php:254
+msgid "youtube profile or page URL "
+msgstr ""
+
+#: theme-options/theme-options.php:260
+msgid "RSS"
+msgstr ""
+
+#: theme-options/theme-options.php:263
+msgid "RSS profile or page URL "
+msgstr ""
+
+#: theme-options/theme-options.php:272 theme-options/theme-options.php:275
+msgid "About Us"
+msgstr ""
+
+#: theme-options/theme-options.php:281 theme-options/theme-options.php:284
+msgid "Author Name"
+msgstr ""
+
+#: theme-options/theme-options.php:290
+msgid "Author Image (Recommended Size : 159px * 159px)"
+msgstr ""
+
+#: theme-options/theme-options.php:293
+msgid "Author image should be exactly 159x159px for best results."
+msgstr ""
+
+#: theme-options/theme-options.php:299
+msgid "author-image"
+msgstr ""
+
+#: theme-options/theme-options.php:307 theme-options/theme-options.php:310
+msgid "Author Link"
+msgstr ""
+
+#: theme-options/theme-options.php:315 theme-options/theme-options.php:318
+msgid "Author Location"
+msgstr ""
+
+#: theme-options/theme-options.php:360
+msgid "Options saved successfully"
+msgstr ""
