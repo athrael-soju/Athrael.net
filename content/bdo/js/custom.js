@@ -345,7 +345,7 @@ function initEnchantTables() {
     armorEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17, -60 dur"]).draw();
     armorEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23, -70 dur"]).draw();
     armorEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29, -100 dur"]).draw();
-    armorEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%",  "? stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", "? stones, -100 dur"]).draw();
     armorEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", "? stones, -100 dur"]).draw();
     armorEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", "? stones, -100 dur"]).draw();
     armorEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
@@ -366,7 +366,7 @@ function initEnchantTables() {
     weaponEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17 stones, -60 dur"]).draw();
     weaponEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23 stones, -70 dur"]).draw();
     weaponEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29 stones, -100 dur"]).draw();
-    weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%",  "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
@@ -379,10 +379,17 @@ function initWeaponLists() {
         weaponFailstackIncrease[i] = 0;
         weaponFailstackLimit[i] = 0;
     }
+
     weaponBaseUpgradeChanceList[8] = 20;
     for (i = 9; i < 16; i++) {
         weaponBaseUpgradeChanceList[i] = (weaponBaseUpgradeChanceList[i - 1] - 2.5);
     }
+
+    weaponBaseUpgradeChanceList[16] = 1.5;
+    weaponBaseUpgradeChanceList[17] = 0.75;
+    weaponBaseUpgradeChanceList[18] = 0.5;
+    weaponBaseUpgradeChanceList[19] = 0.2556;
+    weaponBaseUpgradeChanceList[20] = 0.5;
 
     weaponFailstackIncrease[8] = 2.5;
     weaponFailstackIncrease[9] = 2;
@@ -392,6 +399,11 @@ function initWeaponLists() {
     weaponFailstackIncrease[13] = 0.63;
     weaponFailstackIncrease[14] = 0.5;
     weaponFailstackIncrease[15] = 0.5;
+    weaponFailstackIncrease[16] = 1.5;
+    weaponFailstackIncrease[17] = 0.75;
+    weaponFailstackIncrease[18] = 0.5;
+    weaponFailstackIncrease[19] = 0.2556;
+    weaponFailstackIncrease[20] = 0.15;
 
     weaponFailstackLimit[8] = 13;
     weaponFailstackLimit[9] = 14;
@@ -401,6 +413,11 @@ function initWeaponLists() {
     weaponFailstackLimit[13] = 20;
     weaponFailstackLimit[14] = 25;
     weaponFailstackLimit[15] = 25;
+    weaponFailstackLimit[16] = 25;
+    weaponFailstackLimit[17] = 35;
+    weaponFailstackLimit[18] = 44;
+    weaponFailstackLimit[19] = 90;
+    weaponFailstackLimit[20] = 124;
 }
 
 function initArmorLists() {
@@ -413,6 +430,11 @@ function initArmorLists() {
     for (i = 7; i < 16; i++) {
         armorBaseUpgradeChanceList[i] = (armorBaseUpgradeChanceList[i - 1] - 2.5);
     }
+    armorBaseUpgradeChanceList[16] = 1.5;
+    armorBaseUpgradeChanceList[17] = 0.75;
+    armorBaseUpgradeChanceList[18] = 0.5;
+    armorBaseUpgradeChanceList[19] = 0.2556;
+    armorBaseUpgradeChanceList[20] = 0.5;
 
     armorFailstackIncrease[6] = 2.5;
     armorFailstackIncrease[7] = 2;
@@ -424,6 +446,11 @@ function initArmorLists() {
     armorFailstackIncrease[13] = 0.63;
     armorFailstackIncrease[14] = 0.5;
     armorFailstackIncrease[15] = 0.5;
+    armorFailstackIncrease[16] = 1.5;
+    armorFailstackIncrease[17] = 0.75;
+    armorFailstackIncrease[18] = 0.5;
+    armorFailstackIncrease[19] = 0.2556;
+    armorFailstackIncrease[20] = 0.15;
 
     armorFailstackLimit[6] = 13;
     armorFailstackLimit[7] = 14;
@@ -435,6 +462,11 @@ function initArmorLists() {
     armorFailstackLimit[13] = 20;
     armorFailstackLimit[14] = 25;
     armorFailstackLimit[15] = 25;
+    armorFailstackLimit[16] = 25;
+    armorFailstackLimit[17] = 35;
+    armorFailstackLimit[18] = 44;
+    armorFailstackLimit[19] = 90;
+    armorFailstackLimit[20] = 124;
 }
 
 function initDurabilityLists() {
@@ -462,6 +494,11 @@ function initDurabilityLists() {
     weaponDurabilityList[13] = 60;
     weaponDurabilityList[14] = 70;
     weaponDurabilityList[15] = 100;
+
+    for (i = 16; i < 21; i++) {
+        armorDurabilityList[i] = 100;
+        weaponDurabilityList[i] = 100;
+    }
 }
 
 function initForcedEnchantLists() {
@@ -489,6 +526,11 @@ function initForcedEnchantLists() {
     forceWeaponList[13] = 17;
     forceWeaponList[14] = 23;
     forceWeaponList[15] = 29;
+
+    for (i = 16; i < 21; i++) {
+        forcedArmorList[i] = 100;
+        forceWeaponList[i] = 100;
+    }
 
 }
 
@@ -523,7 +565,7 @@ function enchant() {
     if (enchantItemType === "Weapon") {
         currentEnchantChance = weaponBaseUpgradeChanceList[1];
     } else if (enchantItemType === "Armor") {
-        var currentEnchantChance = armorBaseUpgradeChanceList[1];
+        currentEnchantChance = armorBaseUpgradeChanceList[1];
     }
     var enchantMethod = $("input[name = 'enchantMethod']:checked").val();
 
