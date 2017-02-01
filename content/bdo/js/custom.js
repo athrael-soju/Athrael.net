@@ -1,16 +1,16 @@
 /*
  Copyright  (c) 2016 Athrael
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -164,7 +164,13 @@ $(document).ready(function () {
         cfg.enchantItemType = $('input[name=itemRadio]:checked').val();
         cfg.enchantMethod = $('input[name=methodRadio]:checked').val();
         if ((cfg.itemValue > 1000 || cfg.itemValue < 50) || (cfg.stoneValue > 1000 || cfg.stoneValue < 50))
-            swal({title: "Error!", confirmButtonColor: "#D2B48C", html: "true", text: "Please Select a value between 50k-1000k for the Cost Breakdown.", confirmButtonText: "Ok!"});
+            swal({
+                title: "Error!",
+                confirmButtonColor: "#D2B48C",
+                html: "true",
+                text: "Please Select a value between 50k-1000k for the Cost Breakdown.",
+                confirmButtonText: "Ok!"
+            });
         else {
             $("#enchant-nav a").show("slow");
             $("#enchant-nav").trigger("click");
@@ -212,14 +218,19 @@ $(document).ready(function () {
         var bsStatsList = [], costStatsList = [];
         var numSims = $('#numOfSims').val();
         if (numSims < 5 || numSims > 100) {
-            swal({title: "Error!", confirmButtonColor: "#D2B48C", html: "true", text: "Please Select a Simulation value between 5-100.", confirmButtonText: "Ok!"});
+            swal({
+                title: "Error!",
+                confirmButtonColor: "#D2B48C",
+                html: "true",
+                text: "Please Select a Simulation value between 5-100.",
+                confirmButtonText: "Ok!"
+            });
         }
         else {
             var luckiestEnchant = 1000000000, unluckiestEnchant = 0;
             var luckiestCost = 1000000000000, unluckiestCost = 0;
             var averageBS = 0, averageCost = 0;
-            for (var i = 0; i < numSims; i++)
-            {
+            for (var i = 0; i < numSims; i++) {
                 enchantRange = [];
                 blackStonesUsed = [];
                 costPerEnchant = [];
@@ -245,13 +256,13 @@ $(document).ready(function () {
 
             }
             averageBS = (blackStonesUsedTotal.reduce(function (a, b) {
-                return a + b;
-            })) / blackStonesUsedTotal.length;
+                    return a + b;
+                })) / blackStonesUsedTotal.length;
 
             averageCost = (costPerEnchantTotal.reduce(function (a, b) {
-                return a + b;
-            })) / costPerEnchantTotal.length;                        
-            
+                    return a + b;
+                })) / costPerEnchantTotal.length;
+
             drawEnchantChart("Multiple", enchantRange, blackStonesUsedTotal, costPerEnchantTotal, "#container2");
 
             if ($("input[name = 'enchantMethod']:checked").val() === "RNG") {
@@ -283,7 +294,7 @@ $(document).ready(function () {
                 (key >= 35 && key <= 40) ||
                 (key >= 48 && key <= 57 && !(e.shiftKey || e.altKey)) ||
                 (key >= 96 && key <= 105)
-                ))
+            ))
             e.preventDefault();
     });
 });
@@ -324,16 +335,21 @@ function initEnchantTables() {
     armorEnchantTable.row.add(["+3", "100%", "-", "-", "100%", "-"]).draw();
     armorEnchantTable.row.add(["+4", "100%", "-", "-", "100%", "-"]).draw();
     armorEnchantTable.row.add(["+5", "100%", "-", "-", "100%", "-"]).draw();
-    armorEnchantTable.row.add(["+6", "20%", "2.5%", "13", "52.5%", "2 stones, -10 dur"]).draw();
-    armorEnchantTable.row.add(["+7", "17.5%", "2%", "14", "45.5%", "3 stones, -10 dur"]).draw();
-    armorEnchantTable.row.add(["+8", "16.25%", "1.75%", "14", "40.75%", "4 stones, -10 dur"]).draw();
-    armorEnchantTable.row.add(["+9", "15%", "1.5%", "15", "37.5%", "5 stones, -20 dur"]).draw();
-    armorEnchantTable.row.add(["+10", "12.5%", "1.25%", "16", "32.5%", "7 stones, -30 dur"]).draw();
-    armorEnchantTable.row.add(["+11", "11.25%", "1%", "17", "28.25%", "9 stones, -40 dur"]).draw();
-    armorEnchantTable.row.add(["+12", "10%", "0.75%", "18", "23.5%", "11 stones, -50 dur"]).draw();
-    armorEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17 stones, -60 dur"]).draw();
-    armorEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23 stones, -70 dur"]).draw();
-    armorEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29 stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["+6", "20%", "2.5%", "13", "52.5%", "2, -10 dur"]).draw();
+    armorEnchantTable.row.add(["+7", "17.5%", "2%", "14", "45.5%", "3, -10 dur"]).draw();
+    armorEnchantTable.row.add(["+8", "16.25%", "1.75%", "14", "40.75%", "4, -10 dur"]).draw();
+    armorEnchantTable.row.add(["+9", "15%", "1.5%", "15", "37.5%", "5, -20 dur"]).draw();
+    armorEnchantTable.row.add(["+10", "12.5%", "1.25%", "16", "32.5%", "7, -30 dur"]).draw();
+    armorEnchantTable.row.add(["+11", "11.25%", "1%", "17", "28.25%", "9, -40 dur"]).draw();
+    armorEnchantTable.row.add(["+12", "10%", "0.75%", "18", "23.5%", "11, -50 dur"]).draw();
+    armorEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17, -60 dur"]).draw();
+    armorEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23, -70 dur"]).draw();
+    armorEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29, -100 dur"]).draw();
+    armorEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", ""]).draw();
+    armorEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", ""]).draw();
+    armorEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", ""]).draw();
+    armorEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", ""]).draw();
+    armorEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", ""]).draw();
 
     weaponEnchantTable.row.add(["+1", "100%", "-", "-", "100%", "-"]).draw();
     weaponEnchantTable.row.add(["+2", "100%", "-", "-", "100%", "-"]).draw();
@@ -350,6 +366,11 @@ function initEnchantTables() {
     weaponEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17 stones, -60 dur"]).draw();
     weaponEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23 stones, -70 dur"]).draw();
     weaponEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29 stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", ""]).draw();
+    weaponEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", ""]).draw();
+    weaponEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", ""]).draw();
+    weaponEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", ""]).draw();
+    weaponEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", ""]).draw();
 }
 
 function initWeaponLists() {
@@ -492,8 +513,7 @@ function enchant() {
         repairMultiplier = 10;
         //cfg.itemValue = $("#itemMarketValue").val();
     }
-    else if (gearRarity === "Blue" || gearRarity === "Yellow")
-    {
+    else if (gearRarity === "Blue" || gearRarity === "Yellow") {
         if (acquiredBy === "acqByUpgrade")
             repairMultiplier = 10;
         else if (acquiredBy === "acqByDropOrMarket")
@@ -507,12 +527,10 @@ function enchant() {
     }
     var enchantMethod = $("input[name = 'enchantMethod']:checked").val();
 
-    if (enchantMethod === "RNG")
-    {
+    if (enchantMethod === "RNG") {
         $("#proceed-to-anl-button").value = "Analysis <span class='glyphicon glyphicon-arrow-right'></span>";
         $("#proceed-to-anl-button").attr("disabled", false);
-        while (enchantAt < enchantTo)
-        {
+        while (enchantAt < enchantTo) {
             randomValue = Math.random() * 100;
             captureRandomRolls[enchantAt + 1] = randomValue;
             if (randomValue >= 0 && randomValue <= currentEnchantChance) {
@@ -523,7 +541,7 @@ function enchant() {
                 totalCost = (repairsCost + blackStoneCost);
                 enchantAt++;
                 blackStonesUsed.push(currentFailStacks + 1);
-                costPerEnchant.push(parseFloat(totalCost.toFixed(2))); 
+                costPerEnchant.push(parseFloat(totalCost.toFixed(2)));
                 currentFailStacks = 0;
                 if (enchantItemType === "Weapon")
                     currentEnchantChance = weaponBaseUpgradeChanceList[enchantAt + 1];
@@ -562,8 +580,7 @@ function enchant() {
             if (enchantItemType === "Weapon") {
                 bsUsed += forceWeaponList[i];
                 blackStonesUsed.push(forceWeaponList[i]);
-            } else if (enchantItemType === "Armor")
-            {
+            } else if (enchantItemType === "Armor") {
                 bsUsed += forcedArmorList[i];
                 blackStonesUsed.push(forcedArmorList[i]);
             }
@@ -605,7 +622,7 @@ function initSlider() {
 
 function runSlider() {
     var connectBar = document.createElement('div'),
-            connectBase = connectSlider.querySelector('.noUi-base');
+        connectBase = connectSlider.querySelector('.noUi-base');
 
 // Give the bar a class for styling and add it to the slider.
     connectBar.className += 'connect';
