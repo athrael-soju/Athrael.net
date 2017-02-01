@@ -345,11 +345,11 @@ function initEnchantTables() {
     armorEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17, -60 dur"]).draw();
     armorEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23, -70 dur"]).draw();
     armorEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29, -100 dur"]).draw();
-    armorEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", ""]).draw();
-    armorEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", ""]).draw();
-    armorEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", ""]).draw();
-    armorEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", ""]).draw();
-    armorEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", ""]).draw();
+    armorEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%",  "? stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", "? stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", "? stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
+    armorEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", "? stones, -100 dur"]).draw();
 
     weaponEnchantTable.row.add(["+1", "100%", "-", "-", "100%", "-"]).draw();
     weaponEnchantTable.row.add(["+2", "100%", "-", "-", "100%", "-"]).draw();
@@ -366,11 +366,11 @@ function initEnchantTables() {
     weaponEnchantTable.row.add(["+13", "7.5%", "0.63%", "20", "20.1%", "17 stones, -60 dur"]).draw();
     weaponEnchantTable.row.add(["+14", "5%", "0.5%", "25", "17.5%", "23 stones, -70 dur"]).draw();
     weaponEnchantTable.row.add(["+15", "2.5%", "0.5%", "25", "15%", "29 stones, -100 dur"]).draw();
-    weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", ""]).draw();
-    weaponEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", ""]).draw();
-    weaponEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", ""]).draw();
-    weaponEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", ""]).draw();
-    weaponEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", ""]).draw();
+    weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%",  "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", "? stones, -100 dur"]).draw();
 }
 
 function initWeaponLists() {
