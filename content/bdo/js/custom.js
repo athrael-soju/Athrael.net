@@ -531,7 +531,6 @@ function initForcedEnchantLists() {
         forcedArmorList[i] = 100;
         forceWeaponList[i] = 100;
     }
-
 }
 
 function enchant() {
@@ -652,7 +651,7 @@ function initSlider() {
     connectSlider = document.getElementById('connect');
 
     noUiSlider.create(connectSlider, {
-        start: [0, 20],
+        start: [0, 15],
         step: 1,
         connect: false,
         range: {
