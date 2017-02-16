@@ -652,12 +652,12 @@ function initSlider() {
     connectSlider = document.getElementById('connect');
 
     noUiSlider.create(connectSlider, {
-        start: [0, 15],
+        start: [0, 20],
         step: 1,
         connect: false,
         range: {
             'min': 0,
-            'max': 15
+            'max': 20
         }
     });
 }
