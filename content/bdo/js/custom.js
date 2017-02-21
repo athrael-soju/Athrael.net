@@ -1,16 +1,16 @@
 /*
  Copyright  (c) 2016 Athrael
-
+ 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
-
+ 
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
-
+ 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -225,8 +225,7 @@ $(document).ready(function () {
                 text: "Please Select a Simulation value between 5-100.",
                 confirmButtonText: "Ok!"
             });
-        }
-        else {
+        } else {
             var luckiestEnchant = 1000000000, unluckiestEnchant = 0;
             var luckiestCost = 1000000000000, unluckiestCost = 0;
             var averageBS = 0, averageCost = 0;
@@ -243,7 +242,6 @@ $(document).ready(function () {
 
                 costPerEnchantTotal[i] = (costPerEnchant[costPerEnchant.length - 1]);
 
-
                 if (luckiestEnchant > blackStonesUsedTotal[i]) {
                     luckiestEnchant = blackStonesUsedTotal[i];
                     luckiestCost = costPerEnchantTotal[i];
@@ -256,12 +254,12 @@ $(document).ready(function () {
 
             }
             averageBS = (blackStonesUsedTotal.reduce(function (a, b) {
-                    return a + b;
-                })) / blackStonesUsedTotal.length;
+                return a + b;
+            })) / blackStonesUsedTotal.length;
 
             averageCost = (costPerEnchantTotal.reduce(function (a, b) {
-                    return a + b;
-                })) / costPerEnchantTotal.length;
+                return a + b;
+            })) / costPerEnchantTotal.length;
 
             drawEnchantChart("Multiple", enchantRange, blackStonesUsedTotal, costPerEnchantTotal, "#container2");
 
@@ -294,7 +292,7 @@ $(document).ready(function () {
                 (key >= 35 && key <= 40) ||
                 (key >= 48 && key <= 57 && !(e.shiftKey || e.altKey)) ||
                 (key >= 96 && key <= 105)
-            ))
+                ))
             e.preventDefault();
     });
 });
@@ -553,8 +551,7 @@ function enchant() {
     if (gearRarity === "Green") {
         repairMultiplier = 10;
         //cfg.itemValue = $("#itemMarketValue").val();
-    }
-    else if (gearRarity === "Blue" || gearRarity === "Yellow") {
+    } else if (gearRarity === "Blue" || gearRarity === "Yellow") {
         if (acquiredBy === "acqByUpgrade")
             repairMultiplier = 10;
         else if (acquiredBy === "acqByDropOrMarket")
@@ -663,7 +660,7 @@ function initSlider() {
 
 function runSlider() {
     var connectBar = document.createElement('div'),
-        connectBase = connectSlider.querySelector('.noUi-base');
+            connectBase = connectSlider.querySelector('.noUi-base');
 
 // Give the bar a class for styling and add it to the slider.
     connectBar.className += 'connect';
@@ -687,6 +684,12 @@ function runSlider() {
 
     connectSlider.noUiSlider.on('update', function (values, handle) {
         (handle ? limitFieldMax : limitFieldMin).innerHTML = "+" + parseInt(values[handle]);
+
+        if (parseInt(values[handle]) > 15)
+            $("#con-bs-input-div").show('slow');
+        else
+            $("#con-bs-input-div").hide('slow');
+
     });
 }
 
