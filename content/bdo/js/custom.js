@@ -36,13 +36,13 @@ var cfg;
 var connectSlider;
 var existingFailStacks;
 
-var enchantRange = [], blackStonesUsed = [], concentratedBlackStonesUsed = [], costPerEnchant = [];
+var enchantRange = [], blackStonesUsed = [], costPerEnchant = [];
 
 
 var configObject = function () {
     this.itemValue = 0;
     this.stoneValue = 0;
-    this.concentratedStoneValue = 0;
+    this.blackCrystalShardValue = 0;
     this.enchantItemType = "";
     this.enchantMethod = "";
     this.enchantFrom = 0;
@@ -162,7 +162,7 @@ $(document).ready(function () {
         }
 
         cfg.stoneValue = $("#blackStoneMarketValue").val();
-        cfg.concentratedStoneValue = $("#ConcentratedblackStoneMarketValue").val();
+        cfg.blackCrystalShardValue = $("#BlackCrystalShardMarketValue").val();
         cfg.enchantItemType = $('input[name=itemRadio]:checked').val();
         cfg.enchantMethod = $('input[name=methodRadio]:checked').val();
         if ((cfg.itemValue > 1000 || cfg.itemValue < 50) || cfg.stoneValue > 1000 || cfg.stoneValue < 50)
@@ -173,12 +173,12 @@ $(document).ready(function () {
                 text: "Please Select a value between 50k-1000k for the Cost Breakdown.",
                 confirmButtonText: "Ok!"
             });
-        else if (parseInt($("#slider-limit-value-max").text()) > 15 && (cfg.concentratedStoneValue < 5 || cfg.concentratedStoneValue > 10)) {
+        else if (parseInt($("#slider-limit-value-max").text()) > 15 && (cfg.blackCrystalShardValue < 4 || cfg.blackCrystalShardValue > 6)) {
             swal({
                 title: "Error!",
                 confirmButtonColor: "#D2B48C",
                 html: "true",
-                text: "Please Select a value between 5m-10m for concentrated black stones",
+                text: "Please Select a value between 4m-6m for Black Crystal Shards",
                 confirmButtonText: "Ok!"
             });
         } else {
@@ -213,10 +213,10 @@ $(document).ready(function () {
         enchantRange = [];
         blackStonesUsed = [];
         costPerEnchant = [];
-        concentratedBlackStonesUsed = [];
+        blackCrystalShardUsed = [];
         enchant();
 
-        drawEnchantChart("Single", enchantRange, blackStonesUsed, concentratedBlackStonesUsed, costPerEnchant, "#container");
+        drawEnchantChart("Single", enchantRange, blackStonesUsed, blackCrystalShardUsed, costPerEnchant, "#container");
         $('#enchant-content2').show("slow");
 
     });
@@ -225,7 +225,7 @@ $(document).ready(function () {
 
         var blackStonesUsedTotal = [];
         var costPerEnchantTotal = [];
-        //var concentratedBlackStonesUsedTotal = [];
+        var blackCrystalShardUsedTotal = [];
 
         var bsStatsList = [], costStatsList = [];
         var numSims = $('#numOfSims').val();
@@ -245,7 +245,7 @@ $(document).ready(function () {
                 enchantRange = [];
                 blackStonesUsed = [];
                 costPerEnchant = [];
-                //concentratedBlackStonesUsed = [];
+                blackCrystalShardUsed = [];
                 enchant();
 
                 blackStonesUsedTotal[i] = blackStonesUsed.reduce(function (a, b) {
@@ -557,6 +557,7 @@ function enchant() {
     var bsUsed = 0;
     var repairsCost = 0;
     var blackStoneCost = 0;
+    var blackCrystalShardCost = 0;
     var totalCost = 0;
     var totalDurabilityLost = 0;
 
@@ -576,7 +577,7 @@ function enchant() {
         currentEnchantChance = armorBaseUpgradeChanceList[1];
     }
     var enchantMethod = $("input[name = 'enchantMethod']:checked").val();
-
+    var numBlackCrystalShard = 0;
     if (enchantMethod === "RNG") {
         $("#proceed-to-anl-button").value = "Analysis <span class='glyphicon glyphicon-arrow-right'></span>";
         $("#proceed-to-anl-button").attr("disabled", false);
@@ -584,17 +585,22 @@ function enchant() {
             randomValue = Math.random() * 100;
             captureRandomRolls[enchantAt + 1] = randomValue;
             if (randomValue >= 0 && randomValue <= currentEnchantChance) {
-                bsUsed += currentFailStacks + 1;
                 if (enchantAt > 14) {
-                    blackStoneCost += ((currentFailStacks + 1) * cfg.concentratedStoneValue * 1000000) / 1000000;
-                    concentratedBlackStonesUsed.push(currentFailStacks + 1);
+                    bsUsed += currentFailStacks + 2;
+                    blackStoneCost += ((currentFailStacks + 2) * cfg.stoneValue * 1000) / 1000000;
+                    blackStonesUsed.push(currentFailStacks + 2);
+                    numBlackCrystalShard++;
+                    blackCrystalShardCost += ((currentFailStacks + 1) * cfg.blackCrystalShardValue * 1000000) / 1000000;
                 } else {
+                    bsUsed += currentFailStacks + 1;
                     blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
                     blackStonesUsed.push(currentFailStacks + 1);
                 }
+                //blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
+                //blackStonesUsed.push(currentFailStacks + 1);
                 repairsCost += (((currentFailStacks) * 5) / repairMultiplier * cfg.itemValue * 1000) / 1000000;
                 totalDurabilityLost += currentFailStacks * 5;
-                totalCost = (repairsCost + blackStoneCost);
+                totalCost = (repairsCost + blackStoneCost + blackCrystalShardCost);
                 enchantAt++;
 
                 costPerEnchant.push(parseFloat(totalCost.toFixed(2)));
@@ -604,7 +610,10 @@ function enchant() {
                 else if (enchantItemType === "Armor")
                     currentEnchantChance = armorBaseUpgradeChanceList[enchantAt + 1];
             } else {
-                currentFailStacks++;
+                if (enchantAt > 14) {
+                    currentFailStacks += 5;
+                } else
+                    currentFailStacks++;
                 if (enchantItemType === "Weapon") {
                     if (currentFailStacks <= weaponFailstackLimit[enchantAt + 1]) {
                         currentEnchantChance += weaponFailstackIncrease[enchantAt + 1];
@@ -704,10 +713,9 @@ function runSlider() {
         (handle ? limitFieldMax : limitFieldMin).innerHTML = "+" + parseInt(values[handle]);
 
         if (parseInt(values[handle]) > 15)
-            $("#ConcentratedblackStoneMarketValue").prop('disabled', false);
+            $("#blackCrystalShardMarketValue").prop('disabled', false);
         else
-            $("#ConcentratedblackStoneMarketValue").prop('disabled', true);
-
+            $("#blackCrystalShardMarketValue").prop('disabled', true);
     });
 }
 
