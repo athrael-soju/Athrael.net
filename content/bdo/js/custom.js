@@ -36,12 +36,13 @@ var cfg;
 var connectSlider;
 var existingFailStacks;
 
-var enchantRange = [], blackStonesUsed = [], costPerEnchant = [];
+var enchantRange = [], blackStonesUsed = [], concentratedBlackStonesUsed = [], costPerEnchant = [];
 
 
 var configObject = function () {
     this.itemValue = 0;
     this.stoneValue = 0;
+    this.concentratedStoneValue = 0;
     this.enchantItemType = "";
     this.enchantMethod = "";
     this.enchantFrom = 0;
@@ -161,9 +162,10 @@ $(document).ready(function () {
         }
 
         cfg.stoneValue = $("#blackStoneMarketValue").val();
+        cfg.concentratedStoneValue = $("#ConcentratedblackStoneMarketValue").val();
         cfg.enchantItemType = $('input[name=itemRadio]:checked').val();
         cfg.enchantMethod = $('input[name=methodRadio]:checked').val();
-        if ((cfg.itemValue > 1000 || cfg.itemValue < 50) || (cfg.stoneValue > 1000 || cfg.stoneValue < 50))
+        if ((cfg.itemValue > 1000 || cfg.itemValue < 50) || cfg.stoneValue > 1000 || cfg.stoneValue < 50)
             swal({
                 title: "Error!",
                 confirmButtonColor: "#D2B48C",
@@ -171,7 +173,15 @@ $(document).ready(function () {
                 text: "Please Select a value between 50k-1000k for the Cost Breakdown.",
                 confirmButtonText: "Ok!"
             });
-        else {
+        else if (parseInt($("#slider-limit-value-max").text()) > 15 && (cfg.concentratedStoneValue < 5 || cfg.concentratedStoneValue > 10)) {
+            swal({
+                title: "Error!",
+                confirmButtonColor: "#D2B48C",
+                html: "true",
+                text: "Please Select a value between 5m-10m for concentrated black stones",
+                confirmButtonText: "Ok!"
+            });
+        } else {
             $("#enchant-nav a").show("slow");
             $("#enchant-nav").trigger("click");
             $("#enchant-button").trigger("click");
@@ -203,10 +213,10 @@ $(document).ready(function () {
         enchantRange = [];
         blackStonesUsed = [];
         costPerEnchant = [];
-
+        concentratedBlackStonesUsed = [];
         enchant();
 
-        drawEnchantChart("Single", enchantRange, blackStonesUsed, costPerEnchant, "#container");
+        drawEnchantChart("Single", enchantRange, blackStonesUsed, concentratedBlackStonesUsed, costPerEnchant, "#container");
         $('#enchant-content2').show("slow");
 
     });
@@ -215,6 +225,8 @@ $(document).ready(function () {
 
         var blackStonesUsedTotal = [];
         var costPerEnchantTotal = [];
+        //var concentratedBlackStonesUsedTotal = [];
+
         var bsStatsList = [], costStatsList = [];
         var numSims = $('#numOfSims').val();
         if (numSims < 5 || numSims > 100) {
@@ -233,7 +245,7 @@ $(document).ready(function () {
                 enchantRange = [];
                 blackStonesUsed = [];
                 costPerEnchant = [];
-
+                //concentratedBlackStonesUsed = [];
                 enchant();
 
                 blackStonesUsedTotal[i] = blackStonesUsed.reduce(function (a, b) {
@@ -573,12 +585,18 @@ function enchant() {
             captureRandomRolls[enchantAt + 1] = randomValue;
             if (randomValue >= 0 && randomValue <= currentEnchantChance) {
                 bsUsed += currentFailStacks + 1;
-                blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
+                if (enchantAt > 14) {
+                    blackStoneCost += ((currentFailStacks + 1) * cfg.concentratedStoneValue * 1000000) / 1000000;
+                    concentratedBlackStonesUsed.push(currentFailStacks + 1);
+                } else {
+                    blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
+                    blackStonesUsed.push(currentFailStacks + 1);
+                }
                 repairsCost += (((currentFailStacks) * 5) / repairMultiplier * cfg.itemValue * 1000) / 1000000;
                 totalDurabilityLost += currentFailStacks * 5;
                 totalCost = (repairsCost + blackStoneCost);
                 enchantAt++;
-                blackStonesUsed.push(currentFailStacks + 1);
+
                 costPerEnchant.push(parseFloat(totalCost.toFixed(2)));
                 currentFailStacks = 0;
                 if (enchantItemType === "Weapon")
@@ -686,9 +704,9 @@ function runSlider() {
         (handle ? limitFieldMax : limitFieldMin).innerHTML = "+" + parseInt(values[handle]);
 
         if (parseInt(values[handle]) > 15)
-            $("#con-bs-input-div").show('slow');
+            $("#ConcentratedblackStoneMarketValue").prop('disabled', false);
         else
-            $("#con-bs-input-div").hide('slow');
+            $("#ConcentratedblackStoneMarketValue").prop('disabled', true);
 
     });
 }
