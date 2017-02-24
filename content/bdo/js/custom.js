@@ -162,7 +162,7 @@ $(document).ready(function () {
         }
 
         cfg.stoneValue = $("#blackStoneMarketValue").val();
-        cfg.blackCrystalShardValue = $("#BlackCrystalShardMarketValue").val();
+        cfg.blackCrystalShardValue = $("#blackCrystalShardMarketValue").val();
         cfg.enchantItemType = $('input[name=itemRadio]:checked').val();
         cfg.enchantMethod = $('input[name=methodRadio]:checked').val();
         if ((cfg.itemValue > 1000 || cfg.itemValue < 50) || cfg.stoneValue > 1000 || cfg.stoneValue < 50)
@@ -216,7 +216,7 @@ $(document).ready(function () {
         blackCrystalShardUsed = [];
         enchant();
 
-        drawEnchantChart("Single", enchantRange, blackStonesUsed, blackCrystalShardUsed, costPerEnchant, "#container");
+        drawEnchantChart("Single", enchantRange, blackStonesUsed, costPerEnchant, "#container");
         $('#enchant-content2').show("slow");
 
     });
@@ -584,6 +584,7 @@ function enchant() {
         while (enchantAt < enchantTo) {
             randomValue = Math.random() * 100;
             captureRandomRolls[enchantAt + 1] = randomValue;
+            print(enchantAt + ", " + currentFailStacks);
             if (randomValue >= 0 && randomValue <= currentEnchantChance) {
                 if (enchantAt > 14) {
                     bsUsed += currentFailStacks + 2;
@@ -596,13 +597,10 @@ function enchant() {
                     blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
                     blackStonesUsed.push(currentFailStacks + 1);
                 }
-                //blackStoneCost += ((currentFailStacks + 1) * cfg.stoneValue * 1000) / 1000000;
-                //blackStonesUsed.push(currentFailStacks + 1);
                 repairsCost += (((currentFailStacks) * 5) / repairMultiplier * cfg.itemValue * 1000) / 1000000;
                 totalDurabilityLost += currentFailStacks * 5;
                 totalCost = (repairsCost + blackStoneCost + blackCrystalShardCost);
                 enchantAt++;
-
                 costPerEnchant.push(parseFloat(totalCost.toFixed(2)));
                 currentFailStacks = 0;
                 if (enchantItemType === "Weapon")
@@ -661,8 +659,11 @@ function enchant() {
     $("#durabilityLost").val(totalDurabilityLost);
     $("#blackStonesUsed").val(bsUsed);
     $("#costOfblackStones").val(blackStoneCost.toFixed(2));
+    $("#costOfblackCrystalShards").val(blackCrystalShardCost.toFixed(2));    
     $("#costOfWeaponRepairs").val(repairsCost.toFixed(2));
     $("#totalCost").val(totalCost.toFixed(2));
+    
+    
 
     var numEnchants = enchantTo - enchantFrom;
     for (var i = 0; i <= numEnchants; i++) {
