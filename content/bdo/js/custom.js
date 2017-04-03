@@ -379,7 +379,7 @@ function initEnchantTables() {
     weaponEnchantTable.row.add(["PRI", "15%", "1.50%", "25", "52.5%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["DUO", "7.5%", "0.75%", "35", "33.75%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["TRI", "5%", "0.50%", "44", "27%", "? stones, -100 dur"]).draw();
-    weaponEnchantTable.row.add(["TET", "2", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
+    weaponEnchantTable.row.add(["TET", "2%", "0.2556%", "90", "25%", "? stones, -100 dur"]).draw();
     weaponEnchantTable.row.add(["PEN", "1.5%", "0.15%", "124", "20.1%", "? stones, -100 dur"]).draw();
 }
 
@@ -415,19 +415,20 @@ function initWeaponLists() {
     weaponFailstackIncrease[19] = 0.2556;
     weaponFailstackIncrease[20] = 0.15;
 
-    weaponFailstackLimit[8] = 13;
-    weaponFailstackLimit[9] = 14;
-    weaponFailstackLimit[10] = 15;
-    weaponFailstackLimit[11] = 16;
-    weaponFailstackLimit[12] = 18;
-    weaponFailstackLimit[13] = 20;
-    weaponFailstackLimit[14] = 25;
-    weaponFailstackLimit[15] = 25;
-    weaponFailstackLimit[16] = 25;
-    weaponFailstackLimit[17] = 35;
-    weaponFailstackLimit[18] = 44;
-    weaponFailstackLimit[19] = 90;
-    weaponFailstackLimit[20] = 124;
+    weaponFailstackLimit[8] = 52.5;
+    weaponFailstackLimit[9] = 45.5;
+    weaponFailstackLimit[10] = 37.5;
+    weaponFailstackLimit[11] = 32.5;
+    weaponFailstackLimit[12] = 23.5;
+    weaponFailstackLimit[13] = 20.1;
+    weaponFailstackLimit[14] = 17.5;
+    weaponFailstackLimit[15] = 15;
+    weaponFailstackLimit[16] = 52.5;
+    weaponFailstackLimit[17] = 33.75;
+    weaponFailstackLimit[18] = 27;
+    weaponFailstackLimit[19] = 25;
+    weaponFailstackLimit[20] = 20.1;   
+
 }
 
 function initArmorLists() {
@@ -462,21 +463,21 @@ function initArmorLists() {
     armorFailstackIncrease[19] = 0.2556;
     armorFailstackIncrease[20] = 0.15;
 
-    armorFailstackLimit[6] = 13;
-    armorFailstackLimit[7] = 14;
-    armorFailstackLimit[8] = 14;
-    armorFailstackLimit[9] = 15;
-    armorFailstackLimit[10] = 16;
-    armorFailstackLimit[11] = 17;
-    armorFailstackLimit[12] = 18;
-    armorFailstackLimit[13] = 20;
-    armorFailstackLimit[14] = 25;
-    armorFailstackLimit[15] = 25;
-    armorFailstackLimit[16] = 25;
-    armorFailstackLimit[17] = 35;
-    armorFailstackLimit[18] = 44;
-    armorFailstackLimit[19] = 90;
-    armorFailstackLimit[20] = 124;
+    armorFailstackLimit[6] = 52.5;
+    armorFailstackLimit[7] = 45.5;
+    armorFailstackLimit[8] = 40.75;
+    armorFailstackLimit[9] = 37.5;
+    armorFailstackLimit[10] = 32.5;
+    armorFailstackLimit[11] = 28.25;
+    armorFailstackLimit[12] = 23.5;
+    armorFailstackLimit[13] = 20.1;
+    armorFailstackLimit[14] = 17.5;
+    armorFailstackLimit[15] = 15;
+    armorFailstackLimit[16] = 52.5;
+    armorFailstackLimit[17] = 33.75;
+    armorFailstackLimit[18] = 27;
+    armorFailstackLimit[19] = 25;
+    armorFailstackLimit[20] = 20.1;
 }
 
 function initDurabilityLists() {
@@ -583,8 +584,9 @@ function enchant() {
         $("#proceed-to-anl-button").attr("disabled", false);
         while (enchantAt < enchantTo) {
             randomValue = Math.random() * 100;
+            //print("Random: " + randomValue + "\ncurrentEnchantChance: " + currentEnchantChance);
             captureRandomRolls[enchantAt + 1] = randomValue;
-            print(enchantAt + ", " + currentFailStacks);
+            //print(enchantAt + ", " + currentFailStacks);
             if (randomValue >= 0 && randomValue <= currentEnchantChance) {
                 if (enchantAt > 14) {
                     bsUsed += currentFailStacks + 2;
@@ -607,19 +609,30 @@ function enchant() {
                     currentEnchantChance = weaponBaseUpgradeChanceList[enchantAt + 1];
                 else if (enchantItemType === "Armor")
                     currentEnchantChance = armorBaseUpgradeChanceList[enchantAt + 1];
-            } else {
+            } else {                
+                var failstackCounter = 0;
                 if (enchantAt > 14) {
-                    currentFailStacks += 5;
-                } else
+                    failstackCounter = 5;
+                    currentFailStacks += 5;                    
+                } else{
+                    failstackCounter = 1;
                     currentFailStacks++;
+                }
                 if (enchantItemType === "Weapon") {
-                    if (currentFailStacks <= weaponFailstackLimit[enchantAt + 1]) {
-                        currentEnchantChance += weaponFailstackIncrease[enchantAt + 1];
+                    if (currentEnchantChance < weaponFailstackLimit[enchantAt + 1]) {
+                        currentEnchantChance += weaponFailstackIncrease[enchantAt + 1]*failstackCounter;
                     }
-                } else if (enchantItemType === "Armor")
-                    if (currentFailStacks <= armorFailstackLimit[enchantAt + 1]) {
-                        currentEnchantChance += armorFailstackIncrease[enchantAt + 1];
+                    else
+                        currentEnchantChance = weaponFailstackLimit[enchantAt + 1];
+                } else if (enchantItemType === "Armor"){
+                    if (currentEnchantChance < armorFailstackLimit[enchantAt + 1]) {
+                        currentEnchantChance += armorFailstackIncrease[enchantAt + 1]*failstackCounter;
                     }
+                    else
+                        currentEnchantChance = armorFailstackIncrease[enchantAt + 1];              
+                }
+                if(enchantAt>17)
+                    enchantAt--;
             }
         }
     } else if (enchantMethod === "Forced") {
